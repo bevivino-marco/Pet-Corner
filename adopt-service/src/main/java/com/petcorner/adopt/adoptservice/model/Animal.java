@@ -13,6 +13,8 @@ public class Animal {
     private String name;
     private int age;
     private int size;
+    private String type;
+    private String description;
     private String kennel;
     private String provenance;
 
@@ -22,13 +24,31 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(Long id, String name, int age, int size, String kennel, String provenance) {
+    public Animal(Long id, String name, int age, int size, String kennel, String provenance, String type, String description) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.size = size;
+        this.type=type;
+        this.description=description;
         this.kennel = kennel;
         this.provenance=provenance;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getId() {
@@ -100,6 +120,8 @@ public class Animal {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", size='" + animalSize + '\'' +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
                 ", kennel='" + kennel + '\'' +
                 ", provenance='" + provenance + '\'' +
                 '}';

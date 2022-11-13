@@ -108,5 +108,36 @@ public class AdoptController {
 
     }
 
+    @GetMapping("/animals/type/{type}")
+    public List<Animal> getAnimalsByType(@PathVariable String type){
+        List<Animal> response;
+
+            try {
+                response = new ArrayList<>(repository.findByType(type));
+            } catch (Exception e){
+                System.out.println("Error:"+ e.getMessage());
+                return null;
+            }
+            return response;
+
+    }
+
+
+    @GetMapping("/animals/search-by-type/{type}")
+    public List<Animal> getAnimalsBySearchType(@PathVariable String type) {
+        List<Animal> response;
+
+        try {
+            response = new ArrayList<>(repository.findByType(type));
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+            return null;
+        }
+        return response;
+
+    }
+
+
+
 
 }

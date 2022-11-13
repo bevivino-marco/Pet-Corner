@@ -13,4 +13,6 @@ public interface AdoptRepository extends JpaRepository<Animal, Long> {
 
     List<Animal>  findByProvenance(String filterValue);
 
+    List<Animal>  findByType(String type);
+
 }
