@@ -1,6 +1,7 @@
 package com.petcorner.adopt.adoptservice.model;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -12,6 +13,8 @@ public class Animal {
     private Long id;
     private String name;
     private int age;
+
+    @Column(name="animal_size")
     private int size;
     private String type;
     private String description;

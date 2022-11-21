@@ -1,5 +1,6 @@
 package com.petcorner.adopt.adoptservice.controller;
 
+import com.petcorner.adopt.adoptservice.model.AdoptModel;
 import com.petcorner.adopt.adoptservice.model.Animal;
 import com.petcorner.adopt.adoptservice.repository.AdoptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1")
 public class AdoptController {
-
     @Autowired
-    public AdoptRepository repository;
-
+    private AdoptRepository repository;
+    @Autowired
+    private AdoptModel model;
 
     @GetMapping("/animals")
     public List<Animal> getAnimals(){
@@ -27,6 +28,19 @@ public class AdoptController {
             System.out.println("Error:"+ e.getMessage());
             return null;
         }
+        return response;
+    }
+
+    @GetMapping("/animals/page/{page}")
+    public List<Animal> getAnimalsForPage(@PathVariable int page){
+        List<Animal> response;
+        try {
+            response = new ArrayList<>(repository.findAll());
+        } catch (Exception e){
+            System.out.println("Error:"+ e.getMessage());
+            return null;
+        }
+        response = model.animalsForNPage(response, page);
         return response;
     }
 
@@ -134,7 +148,18 @@ public class AdoptController {
 
     }
 
-
+    @GetMapping("/animals/page-number")
+    public int getPagesNumber(){
+        List<Animal> response;
+        try {
+            response = new ArrayList<>(repository.findAll());
+        } catch (Exception e){
+            System.out.println("Error:"+ e.getMessage());
+            return 0;
+        }
+        int pages = (response.size()/20)+1;
+        return pages;
+    }
 
 
 }
