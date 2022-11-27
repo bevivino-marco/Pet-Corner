@@ -12,3 +12,12 @@ http://localhost:8000/api/v1/animals/provenance/Torino/page/1
 http://localhost:8000/api/v1/animals/provenance/milano/page/2
 http://localhost:8000/api/v1/animals/provenances
 http://localhost:8000/api/v1/animals/type/rat/page/1
+http://localhost:8000/api/v1/animals/add
+{"id":"24",
+"age":"10",
+"kennel":"Animanile.srl",
+"name":"paperino",
+"size":"2",
+"provenance":"Milano",
+"type":"ratto",
+"description":"é un ratto"}

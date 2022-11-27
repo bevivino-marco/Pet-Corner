@@ -239,6 +239,18 @@ public class AdoptController {
     }
 
 
+    @PostMapping("/animals/add")
+    public Animal addAnimal(@RequestBody Animal animal){
+        try {
+            repository.save(animal);
+        } catch (Exception e){
+            System.out.println("Error:"+ e.getMessage());
+            return null;
+        }
+        return animal;
+    }
+
+
 
 
 

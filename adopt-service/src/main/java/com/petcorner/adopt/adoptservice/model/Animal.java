@@ -1,15 +1,19 @@
 package com.petcorner.adopt.adoptservice.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import java.util.Date;
+import javax.persistence.*;
 
 @Entity
 public class Animal {
     @Id
+    @SequenceGenerator(
+            name = "animals_id_sequence",
+            sequenceName = "animals_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "animals_id_sequence"
+    )
     private Long id;
     private String name;
     private int age;
@@ -18,7 +22,7 @@ public class Animal {
     private int size;
     private String type;
     private String description;
-    private String kennel;
+    private String owner;
     private String provenance;
 
     @Transient
@@ -27,14 +31,14 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(Long id, String name, int age, int size, String kennel, String provenance, String type, String description) {
-        this.id = id;
+    public Animal(String name, int age, int size, String owner, String provenance, String type, String description) {
+
         this.name = name;
         this.age = age;
         this.size = size;
         this.type=type;
         this.description=description;
-        this.kennel = kennel;
+        this.owner = owner;
         this.provenance=provenance;
     }
 
@@ -86,12 +90,12 @@ public class Animal {
         this.size = size;
     }
 
-    public String getKennel() {
-        return kennel;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setKennel(String kennel) {
-        this.kennel = kennel;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getProvenance() {
@@ -125,7 +129,7 @@ public class Animal {
                 ", size='" + animalSize + '\'' +
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
-                ", kennel='" + kennel + '\'' +
+                ", kennel='" + owner + '\'' +
                 ", provenance='" + provenance + '\'' +
                 '}';
     }
