@@ -1,0 +1,43 @@
+services:
+  profile-db:
+    container_name: profile-db
+    image: postgres
+    ports:
+      - "5455:5433"
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: profile-db
+    networks:
+      - pet-corner
+
+
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5051:80"
+    networks:
+      - pet-corner
+
+#  adopt-service:
+#    container_name: profile-service
+#    image: 0109199416081991/mmv2-adopt-service:0.0.1-SNAPSHOT
+#    restart: unless-stopped
+#
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - adopt-db
+#    networks:
+#      - pet-corner
+
+networks:
+  pet-corner:
+    driver: bridge

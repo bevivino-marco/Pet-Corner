@@ -6,16 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-
-
-import java.util.Collection;
-import java.util.Collections;
-
 @Entity
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class User  {
+public class PetCornerUser {
     @Id
     private String id;
 
