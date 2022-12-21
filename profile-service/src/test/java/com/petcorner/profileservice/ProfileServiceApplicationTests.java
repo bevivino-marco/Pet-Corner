@@ -1,4 +1,4 @@
-package com.petcorner.profileservice.profileservice;
+package com.petcorner.profileservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
