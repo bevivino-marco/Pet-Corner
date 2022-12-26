@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.petcorner.profileservice.ProfileServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.414 s <<< FAILURE! - in com.petcorner.profileservice.ProfileServiceApplicationTests
+contextLoads  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/springframework/boot/Bootstrapper
+Caused by: java.lang.ClassNotFoundException: org.springframework.boot.Bootstrapper
+

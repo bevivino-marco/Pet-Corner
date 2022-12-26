@@ -1,0 +1,13 @@
+com\petcorner\profileservice\filter\CustomerAuthorizationFilter.class
+com\petcorner\profileservice\ProfileServiceApplication.class
+com\petcorner\profileservice\repository\UserRepo.class
+com\petcorner\profileservice\model\Role.class
+com\petcorner\profileservice\security\SecurityConfig.class
+com\petcorner\profileservice\filter\CustomAuthenticationFilter.class
+com\petcorner\profileservice\model\User.class
+com\petcorner\profileservice\controller\UserController.class
+com\petcorner\profileservice\service\UserServiceImpl.class
+com\petcorner\profileservice\controller\RoleToUserForm.class
+com\petcorner\profileservice\service\ProfileProxy.class
+com\petcorner\profileservice\service\UserService.class
+com\petcorner\profileservice\repository\RoleRepo.class
