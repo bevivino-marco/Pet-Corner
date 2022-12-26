@@ -35,23 +35,24 @@ public class ProfileServiceApplication {
 
 			userService.saveUser(new User(null, "Jhon Travolta",
 					"jhon@gmail.com", "1234", new ArrayList<>()
-			));
+					,"bbbbrc94p01c722d",null,"ITA","Turin","Via viosa 3"));
 			userService.saveUser(new User(null, "Marco Bevivino",
 					"marco@gmail.com", "1234", new ArrayList<>()
-			));
+					,"rrrmrc94p01c722d",null,"ITA","Turin","Via viosa4"));
 			userService.saveUser(new User(null, "Asya Mantovani",
 					"asya@gmail.com", "1234", new ArrayList<>()
-			));
+					,"aavmrc94p01c722d",null,"ITA","Turin","Via viosa 5"));
 			userService.saveUser(new User(null, "Alessandro Muraro",
-					"alessandro@gmail.com", "1234", new ArrayList<>()
-			));
+					"ale@gmail.com", "1234", new ArrayList<>()
+					,"bq32394p01c722d",null,"ITA","Turin","Via viosa 5"));
+
 
 
 			userService.addRoleToUser("jhon@gmail.com", "ROLE_USER");
 			userService.addRoleToUser("marco@gmail.com", "ROLE_TRAINEE");
 			userService.addRoleToUser("marco@gmail.com", "ROLE_SITTER");
 			userService.addRoleToUser("asya@gmail.com", "ROLE_BUSINESS");
-			userService.addRoleToUser("alessandro@gmail.com", "ROLE_SITTER");
+			userService.addRoleToUser("ale@gmail.com", "ROLE_SITTER");
 
 		};
 	}

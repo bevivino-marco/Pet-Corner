@@ -5,14 +5,19 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import com.petcorner.profileservice.model.Role;
 import com.petcorner.profileservice.model.User;
 import com.petcorner.profileservice.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,7 +74,7 @@ public class UserController {
 
                 String access_token = JWT.create()
                         .withSubject(user.getUsername())
-                        .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
+                        .withExpiresAt(new Date(System.currentTimeMillis() + 15 * 60 * 1000))
                         .withIssuer(request.getRequestURL().toString())
                         .withClaim("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
                         .sign(algorithm);
@@ -93,6 +98,26 @@ public class UserController {
         } else {
             throw new RuntimeException("Refresh token is missing");
         }
+    }
+
+    @PostMapping("/animal/addtouser")
+    public String addAnimalToUser(@RequestBody String request) throws JSONException {
+        log.info(request);
+        JSONObject jsonObject = new JSONObject(request);
+        log.info(jsonObject.toString());
+
+//        log.info(requestEntity.getBody().toString());
+//        return requestEntity.getBody().toString();
+//        HashMap<String, String> uriVariables = new HashMap<>();
+//        uriVariables.put("from",from);
+//        uriVariables.put("to",to);
+//
+        ResponseEntity<JSONObject> responseEntity = new RestTemplate().getForEntity
+                ("http://localhost:8000/api/v1/animals/add",
+                        JSONObject.class, jsonObject);
+
+        return jsonObject.toString();
+
     }
 
 

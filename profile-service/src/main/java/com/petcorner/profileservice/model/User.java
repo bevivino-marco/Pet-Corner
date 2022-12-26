@@ -21,4 +21,10 @@ public class User {
     private String password;
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
+    private String cod_fisc;
+    private String piva;
+    private String country;
+    private String city;
+    private String address;
+
 }

@@ -12,7 +12,18 @@ services:
     networks:
       - pet-corner
 
-
+  adopt-db:
+    container_name: adopt-db
+    image: postgres
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: adopt-db
+    networks:
+      - pet-corner
 
   pgadmin:
     container_name: pgadmin
@@ -26,17 +37,29 @@ services:
     networks:
       - pet-corner
 
-#  adopt-service:
-#    container_name: profile-service
-#    image: 0109199416081991/mmv2-adopt-service:0.0.1-SNAPSHOT
-#    restart: unless-stopped
-#
-#    ports:
-#      - "8000:8000"
-#    depends_on:
-#      - adopt-db
-#    networks:
-#      - pet-corner
+  adopt-service:
+    container_name: adopt-service
+    image: 0109199416081991/mmv2-adopt-service:0.0.1-SNAPSHOT
+    restart: unless-stopped
+
+    ports:
+      - "8000:8000"
+    depends_on:
+      - adopt-db
+    networks:
+      - pet-corner
+
+  profile-service:
+    container_name: profile-service
+    image: 0109199416081991/mmv2-profile-service:0.0.1-SNAPSHOT
+    restart: unless-stopped
+
+    ports:
+      - "9000:9000"
+    depends_on:
+      - profile-db
+    networks:
+      - pet-corner
 
 networks:
   pet-corner:
