@@ -185,8 +185,8 @@ public class AnimalTrainerController {
     }
 
     //questo metodo non funziona
-    @GetMapping("/trainers/provenance/{locality}/page/{page}")
-    public Map<Integer,List<Trainer>> gettrainersFilteredByProvenance(@PathVariable String locality, @PathVariable int page){
+    @GetMapping("/trainers/locality/{locality}/page/{page}")
+    public Map<Integer,List<Trainer>> getTrainersFilteredByProvenance(@PathVariable String locality, @PathVariable int page){
 
         List<Trainer> trainers;
         try {
