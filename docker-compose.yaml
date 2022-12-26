@@ -1,14 +1,14 @@
 services:
-  adopt-db:
-    container_name: adopt-db
+  training-db:
+    container_name: training-db
     image: postgres
     ports:
-      - "5432:5432"
+      - "5435:5432"
     restart: unless-stopped
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: adopt-db
+      POSTGRES_DB: training-db
     networks:
       - pet-corner
 
@@ -23,18 +23,6 @@ services:
       PGADMIN_DEFAULT_PASSWORD: password
     ports:
       - "5050:80"
-    networks:
-      - pet-corner
-        
-  adopt-service:
-    container_name: adopt-service
-    image: 0109199416081991/mmv2-adopt-service:0.0.1-SNAPSHOT
-    restart: unless-stopped
-
-    ports:
-      - "8000:8000"
-    depends_on:
-      - adopt-db
     networks:
       - pet-corner
 
