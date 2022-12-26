@@ -25,6 +25,21 @@ services:
     networks:
       - pet-corner
 
+  trainer-db:
+    container_name: trainer-db
+    image: postgres
+    ports:
+      - "5434:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: trainer-db
+    networks:
+      - pet-corner
+
+
+
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
