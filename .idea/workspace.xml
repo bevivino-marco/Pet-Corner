@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5669b4df-f884-402e-990d-a02f071e11d8" name="Changes" comment="profile config" />
+    <list default="true" id="5669b4df-f884-402e-990d-a02f071e11d8" name="Changes" comment="docker compose">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672076613769</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="docker compose">
+      <created>1672077537796</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672077537796</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,6 +128,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="profile config" />
-    <option name="LAST_COMMIT_MESSAGE" value="profile config" />
+    <MESSAGE value="docker compose" />
+    <option name="LAST_COMMIT_MESSAGE" value="docker compose" />
   </component>
 </project>
