@@ -1,0 +1,41 @@
+services:
+  therapy-db:
+    container_name: therapy-db
+    image: postgres
+    ports:
+      - "5436:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: therapy-db
+    networks:
+      - pet-corner
+
+
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5051:80"
+    networks:
+      - pet-corner
+  therapy-service:
+    container_name: therapy-service
+    image: asya14/mmv2-animal-sitting:0.0.1-SNAPSHOT
+    restart: unless-stopped
+    ports:
+      - "8100:8100"
+    depends_on:
+      - therapy-db
+    networks:
+      - pet-corner
+
+networks:
+  pet-corner:
+    driver: bridge
