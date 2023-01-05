@@ -33,8 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
-        http.cors()
-                .and()
+        http.cors().disable()
+                .csrf().disable()
+//                .authorizeRequests().antMatchers("/api/v1/login/**", "/api/v1/token/refresh","/api/v1/user/save/**","/api/v1/animal/addtouser").permitAll()
+//                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests().antMatchers("/api/v1/login/**", "/api/v1/token/refresh","/api/v1/user/save/**","/api/v1/animal/addtouser").permitAll()
@@ -56,6 +58,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
 
     }
+
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        final CorsConfiguration config = new CorsConfiguration();
+//
+//        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+//        config.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
+//        config.setAllowCredentials(true);
+//        config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+//
+//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", config);
+//
+//        return source;
+//    }
 
 
 }

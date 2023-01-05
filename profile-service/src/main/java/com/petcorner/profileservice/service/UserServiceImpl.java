@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User saveUser(User user) {
         log.info("Saving new user {} to the database", user.getName());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // controllare se l'uitente é gia presente
         return userRepo.save(user);
     }
 
