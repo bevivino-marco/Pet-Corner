@@ -1,10 +1,10 @@
-package com.petcorner.adopt.adoptservice;
+package com.petcorner.animaltrainer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AdoptServiceApplicationTests {
+class AnimalTrainerApplicationTests {
 
 	@Test
 	void contextLoads() {
