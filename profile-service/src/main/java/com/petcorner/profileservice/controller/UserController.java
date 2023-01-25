@@ -6,14 +6,17 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
+import com.petcorner.profileservice.feignproxy.AdoptServiceProxy;
 import com.petcorner.profileservice.model.Role;
 import com.petcorner.profileservice.model.User;
 import com.petcorner.profileservice.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +44,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class UserController {
 
     private final UserService userService;
-
+    @Autowired
+    private AdoptServiceProxy proxy;
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers() {
@@ -102,25 +106,34 @@ public class UserController {
         }
     }
 
-    @PostMapping("/animal/addtouser")
-    public String addAnimalToUser(@RequestBody String request) throws JSONException {
-        log.info(request);
-        JSONObject jsonObject = new JSONObject(request);
-        log.info(jsonObject.toString());
-
-//        log.info(requestEntity.getBody().toString());
-//        return requestEntity.getBody().toString();
-//        HashMap<String, String> uriVariables = new HashMap<>();
-//        uriVariables.put("from",from);
-//        uriVariables.put("to",to);
+//    @PostMapping("/animal/addtouser")
+//    public String addAnimalToUser(@RequestBody String request) throws JSONException {
+//        log.info(request);
+//        JSONObject jsonObject = new JSONObject(request);
+//        log.info(jsonObject.toString());
 //
-        ResponseEntity<JSONObject> responseEntity = new RestTemplate().getForEntity
-                ("http://localhost:8000/api/v1/animals/add",
-                        JSONObject.class, jsonObject);
+////        log.info(requestEntity.getBody().toString());
+////        return requestEntity.getBody().toString();
+////        HashMap<String, String> uriVariables = new HashMap<>();
+////        uriVariables.put("from",from);
+////        uriVariables.put("to",to);
+////
+//        ResponseEntity<JSONObject> responseEntity = new RestTemplate().getForEntity
+//                ("http://localhost:8000/api/v1/animals/add",
+//                        JSONObject.class, jsonObject);
+//
+//        return jsonObject.toString();
+//
+//    }
 
-        return jsonObject.toString();
 
-    }
+
+
+    @PostMapping("/animal/add-animal")
+    public String addAnimal(@RequestBody Object animal, @RequestHeader (HttpHeaders.AUTHORIZATION) String token) throws JSONException {
+        return proxy.addAnimal(animal, token);
+        }
+
 
 
 }

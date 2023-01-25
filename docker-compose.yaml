@@ -29,7 +29,7 @@ services:
     container_name: trainer-db
     image: postgres
     ports:
-      - "5434:5432"
+      - "5435:5432"
     restart: unless-stopped
     environment:
       POSTGRES_USER: admin
@@ -38,6 +38,32 @@ services:
     networks:
       - pet-corner
 
+
+  sitting-db:
+    container_name: sitting-db
+    image: postgres
+    ports:
+      - "5434:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sitting-db
+    networks:
+      - pet-corner
+
+  therapy-db:
+    container_name: therapy-db
+    image: postgres
+    ports:
+      - "5436:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: therapy-db
+    networks:
+      - pet-corner
 
 
   pgadmin:
@@ -54,25 +80,90 @@ services:
 
   adopt-service:
     container_name: adopt-service
-    image: 0109199416081991/mmv2-adopt-service:0.0.1-SNAPSHOT
+    image: 0109199416081991/mmv2-adopt-service:0.1.0-SNAPSHOT
     restart: unless-stopped
-
     ports:
       - "8000:8000"
     depends_on:
       - adopt-db
+      - naming-server
     networks:
       - pet-corner
+    environment:
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
+      - SPRING.DATASOURCE.URL=jdbc:postgresql://adopt-db:5432/adopt-db
+      - SPRING.ZIPKIN.BASE-URL=http://tracing-server:9411/
+
 
   profile-service:
     container_name: profile-service
-    image: 0109199416081991/mmv2-profile-service:0.0.3-SNAPSHOT
+    image: 0109199416081991/mmv2-profile-service:0.1.2-SNAPSHOT
     restart: unless-stopped
-
     ports:
       - "9000:9000"
     depends_on:
       - profile-db
+      - naming-server
+    networks:
+      - pet-corner
+    environment:
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
+      - SPRING.DATASOURCE.URL=jdbc:postgresql://profile-db:5432/profile-db
+      - SPRING.ZIPKIN.BASE-URL=http://tracing-server:9411/
+
+#  therapy-service:
+#    container_name: therapy-service
+#    image:
+#    restart: unless-stopped
+#    ports:
+#      - "8100:8100"
+#    depends_on:
+#      - therapy-db
+#      - naming-server
+#    networks:
+#      - pet-corner
+#
+#
+#  sitting-service:
+#    container_name: sitting-service
+#    image:
+#    restart: unless-stopped
+#    ports:
+#      - "8200:8200"
+#    depends_on:
+#      - sitting-db
+#      - naming-server
+#    networks:
+#      - pet-corner
+#
+#
+#  training-service:
+#    container_name: training-service
+#    image:
+#    restart: unless-stopped
+#    ports:
+#      - "8300:8300"
+#    depends_on:
+#      - training-db
+#      - naming-server
+#    networks:
+#      - pet-corner
+
+  tracing-server:
+    container_name: tracing-server
+    image: openzipkin/zipkin:2.23
+    restart: unless-stopped
+    ports:
+      - "9411:9411"
+    networks:
+      - pet-corner
+
+  naming-server:
+    container_name: naming-server
+    image: 0109199416081991/mmv2-naming-server:0.0.1-SNAPSHOT
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
     networks:
       - pet-corner
 

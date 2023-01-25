@@ -1,0 +1,23 @@
+http://localhost:8000/api/v1/animals/filter/age/3/3
+http://localhost:8000/api/v1/animals/sort_by/age_increase
+http://localhost:8000/api/v1/animals/provenance/Torino
+
+v2
+
+http://localhost:8000/api/v1/animals/page/1
+http://localhost:8000/api/v1/animals/page-number
+http://localhost:8000/api/v1/animals/sort_by/size_increase/page/2
+http://localhost:8000/api/v1/animals/filter/age/1/15/page/1
+http://localhost:8000/api/v1/animals/provenance/Torino/page/1
+http://localhost:8000/api/v1/animals/provenance/milano/page/2
+http://localhost:8000/api/v1/animals/provenances
+http://localhost:8000/api/v1/animals/type/rat/page/1
+http://localhost:8000/api/v1/animals/add
+{"id":"24",
+"age":"10",
+"kennel":"Animanile.srl",
+"name":"paperino",
+"size":"2",
+"provenance":"Milano",
+"type":"ratto",
+"description":"é un ratto"}

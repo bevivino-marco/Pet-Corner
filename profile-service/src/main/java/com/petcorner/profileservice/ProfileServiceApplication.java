@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.ArrayList;
 
 @SpringBootApplication
+@EnableFeignClients
 public class ProfileServiceApplication {
 
 	public static void main(String[] args) {
