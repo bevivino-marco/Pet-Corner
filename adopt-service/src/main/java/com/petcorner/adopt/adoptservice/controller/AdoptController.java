@@ -3,7 +3,11 @@ package com.petcorner.adopt.adoptservice.controller;
 import com.petcorner.adopt.adoptservice.model.AdoptModel;
 import com.petcorner.adopt.adoptservice.model.Animal;
 import com.petcorner.adopt.adoptservice.proxy.ProfileServiceProxy;
+import com.petcorner.adopt.adoptservice.queue.CustomMessage;
+import com.petcorner.adopt.adoptservice.queue.MQConfig;
 import com.petcorner.adopt.adoptservice.repository.AdoptRepository;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +19,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1")
 public class AdoptController {
+    @Autowired
+    private RabbitTemplate template;
     @Autowired
     private AdoptRepository repository;
     @Autowired
@@ -270,6 +276,14 @@ public class AdoptController {
     }
 
 
+    @RabbitListener(queues = MQConfig.QUEUE)
+    public void listener(CustomMessage message) {
+        System.out.println(message);
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend(MQConfig.EXCHANGE,
+        MQConfig.ROUTING_KEY, message);
+    }
 
 
 }

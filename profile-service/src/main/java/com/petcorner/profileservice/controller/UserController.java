@@ -9,10 +9,14 @@ import com.google.gson.JsonObject;
 import com.petcorner.profileservice.feignproxy.AdoptServiceProxy;
 import com.petcorner.profileservice.model.Role;
 import com.petcorner.profileservice.model.User;
+import com.petcorner.profileservice.queue.CustomMessage;
+import com.petcorner.profileservice.queue.MQConfig;
 import com.petcorner.profileservice.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -42,6 +46,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
+    @Autowired
+    private RabbitTemplate template;
 
     private final UserService userService;
     @Autowired
@@ -134,8 +140,20 @@ public class UserController {
         return proxy.addAnimal(animal, token);
         }
 
+    @PostMapping("/publish")
+    public String publishMessage(@RequestBody CustomMessage message) {
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend(MQConfig.EXCHANGE,
+                MQConfig.ROUTING_KEY, message);
 
+        return "Message Published";
+    }
+    @RabbitListener(queues = MQConfig.QUEUE)
+    public void listener(CustomMessage message) {
+        System.out.println(message);
 
+    }
 }
 @Data
 class RoleToUserForm {

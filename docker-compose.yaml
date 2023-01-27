@@ -87,12 +87,16 @@ services:
     depends_on:
       - adopt-db
       - naming-server
+      - rabbitmq
     networks:
       - pet-corner
     environment:
-      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
-      - SPRING.DATASOURCE.URL=jdbc:postgresql://adopt-db:5432/adopt-db
-      - SPRING.ZIPKIN.BASE-URL=http://tracing-server:9411/
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.DATASOURCE.URL: jdbc:postgresql://adopt-db:5432/adopt-db
+      SPRING.ZIPKIN.BASE-URL: http://tracing-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
 
 
   profile-service:
@@ -104,12 +108,16 @@ services:
     depends_on:
       - profile-db
       - naming-server
+      - rabbitmq
     networks:
       - pet-corner
     environment:
-      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://naming-server:8761/eureka
-      - SPRING.DATASOURCE.URL=jdbc:postgresql://profile-db:5432/profile-db
-      - SPRING.ZIPKIN.BASE-URL=http://tracing-server:9411/
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.DATASOURCE.URL: jdbc:postgresql://profile-db:5432/profile-db
+      SPRING.ZIPKIN.BASE-URL: http://tracing-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
 
 #  therapy-service:
 #    container_name: therapy-service
@@ -155,6 +163,34 @@ services:
     restart: unless-stopped
     ports:
       - "9411:9411"
+    networks:
+      - pet-corner
+    depends_on:
+      - naming-server
+      - rabbitmq
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8.12-management
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - pet-corner
+
+
+  profile-adopt-queue:
+    container_name: profile-adopt-queue
+    image: rabbitmq:3.8.12-management
+    restart: unless-stopped
+    ports:
+      - "5673:5672"
+      - "15673:15672"
     networks:
       - pet-corner
 
