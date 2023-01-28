@@ -6,7 +6,9 @@ C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com
 C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\controller\UserController.java
 C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\service\ProfileProxy.java
 C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\model\Role.java
+C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\queue\CustomMessage.java
 C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\filter\CustomerAuthorizationFilter.java
+C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\queue\MQConfig.java
 C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\feignproxy\AdoptServiceProxy.java
 C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\filter\CustomAuthenticationFilter.java
 C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\service\UserServiceImpl.java

@@ -80,7 +80,7 @@ services:
 
   adopt-service:
     container_name: adopt-service
-    image: 0109199416081991/mmv2-adopt-service:0.1.0-SNAPSHOT
+    image: 0109199416081991/mmv2-adopt-service:0.1.1-SNAPSHOT
     restart: unless-stopped
     ports:
       - "8000:8000"
@@ -97,11 +97,12 @@ services:
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING_RABBITMQ_ADDRESSES: rabbitmq:5672
 
 
   profile-service:
     container_name: profile-service
-    image: 0109199416081991/mmv2-profile-service:0.1.2-SNAPSHOT
+    image: 0109199416081991/mmv2-profile-service:0.1.3-SNAPSHOT
     restart: unless-stopped
     ports:
       - "9000:9000"
@@ -118,6 +119,8 @@ services:
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING_RABBITMQ_ADDRESSES: rabbitmq:5672
+#  spring.rabbitmq.addresses = localhost:5672
 
 #  therapy-service:
 #    container_name: therapy-service
@@ -169,6 +172,7 @@ services:
       - naming-server
       - rabbitmq
     environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit

@@ -4,7 +4,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.JsonObject;
 import com.petcorner.profileservice.feignproxy.AdoptServiceProxy;
 import com.petcorner.profileservice.model.Role;
@@ -133,6 +135,27 @@ public class UserController {
 //    }
 
 
+    @GetMapping("/user-info/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+
+        return ResponseEntity.ok().body(userService.getUser(username));
+    }
+
+
+//    @GetMapping("/user-animals/{username}")
+//    public ResponseEntity<List<JsonObject>> getAnimalsByUser(@PathVariable String username) {
+//        CustomMessage message = new CustomMessage();
+//        message.setData(username);
+//        message.setMessage("Get animals for user: "+username);
+//        message.setMessageId(UUID.randomUUID().toString());
+//        message.setMessageDate(new Date());
+//        template.convertAndSend(MQConfig.EXCHANGE,
+//                MQConfig.ROUTING_KEY, message);
+//        System.out.println(message.getData());
+//
+//
+//        return ResponseEntity.ok().body(userService.getUser(username));
+//    }
 
 
     @PostMapping("/animal/add-animal")
@@ -140,20 +163,48 @@ public class UserController {
         return proxy.addAnimal(animal, token);
         }
 
-    @PostMapping("/publish")
-    public String publishMessage(@RequestBody CustomMessage message) {
+    @PostMapping("/animal/add-animal-queue")
+    public String addAnimalToUser(@RequestBody Object animal) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(animal);
+        CustomMessage message = new CustomMessage();
+        message.setData(json);
+        message.setMessage("Create animal");
         message.setMessageId(UUID.randomUUID().toString());
         message.setMessageDate(new Date());
         template.convertAndSend(MQConfig.EXCHANGE,
                 MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
 
-        return "Message Published";
+        return "Animal Sent";
     }
+
+    @PostMapping("/animal/delete-animal-queue")
+    public String removeAnimalOfUser(@RequestBody Object animal) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(animal);
+        CustomMessage message = new CustomMessage();
+        message.setData(json);
+        message.setMessage("Delete animal");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend(MQConfig.EXCHANGE,
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal Sent";
+    }
+
+
+
     @RabbitListener(queues = MQConfig.QUEUE)
     public void listener(CustomMessage message) {
         System.out.println(message);
 
     }
+
+
+
 }
 @Data
 class RoleToUserForm {

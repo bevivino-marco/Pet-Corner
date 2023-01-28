@@ -1,5 +1,8 @@
 package com.petcorner.adopt.adoptservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petcorner.adopt.adoptservice.model.AdoptModel;
 import com.petcorner.adopt.adoptservice.model.Animal;
 import com.petcorner.adopt.adoptservice.proxy.ProfileServiceProxy;
@@ -11,8 +14,10 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 @CrossOrigin
@@ -41,6 +46,17 @@ public class AdoptController {
     }
 
 
+    @GetMapping("/animals/owner/{username}")
+    public List<Animal> getAnimalsByOwner(@PathVariable String username){
+        List<Animal> response;
+        try {
+            response = new ArrayList<>(repository.findByOwner(username));
+        } catch (Exception e){
+            System.out.println("Error:"+ e.getMessage());
+            return null;
+        }
+        return response;
+    }
 
 
     @GetMapping("/animals/sort_by/{sortMethod}")
@@ -250,39 +266,79 @@ public class AdoptController {
     }
 
 
-    @PostMapping("/animals/add")
-    public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal, @RequestHeader (HttpHeaders.AUTHORIZATION) String token){
-        System.out.println("Adopt chiamato");
-        System.out.println(animal.toString());
+//    @PostMapping("/animals/add")
+//    public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal, @RequestHeader (HttpHeaders.AUTHORIZATION) String token){
+//        System.out.println("Adopt chiamato");
+//        System.out.println(animal.toString());
+//
+//        try {
+//            repository.save(animal);
+//        } catch (Exception e){
+//            System.out.println("Error:"+ e.getMessage());
+//            return null;
+//        }
+//        HttpHeaders responseHeaders = new HttpHeaders();
+//        responseHeaders.set("AUTHORIZATION",
+//                token);
+//
+//        return ResponseEntity.ok()
+//                .headers(responseHeaders)
+//                .body(animal);
+//    }
 
-        try {
-            repository.save(animal);
-        } catch (Exception e){
-            System.out.println("Error:"+ e.getMessage());
-            return null;
-        }
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("AUTHORIZATION",
-                token);
-
-        return ResponseEntity.ok()
-                .headers(responseHeaders)
-                .body(animal);
-    }
-
-    @GetMapping("/animal/provafeign")
-    public void getUserInfo(){
-        System.out.println("chiamato");
-    }
+//    @GetMapping("/animal/provafeign")
+//    public void getUserInfo(){
+//        System.out.println("chiamato");
+//    }
 
 
     @RabbitListener(queues = MQConfig.QUEUE)
-    public void listener(CustomMessage message) {
-        System.out.println(message);
-        message.setMessageId(UUID.randomUUID().toString());
-        message.setMessageDate(new Date());
-        template.convertAndSend(MQConfig.EXCHANGE,
-        MQConfig.ROUTING_KEY, message);
+    public void listener(CustomMessage message) throws IOException {
+
+        switch(message.getMessage()) {
+            case "Create animal":
+                String animalString = message.getData().toString();
+                System.out.println(message.getData().toString());
+                Animal animal = new ObjectMapper().readValue(animalString, Animal.class);
+
+
+                System.out.println(animal);
+                try {
+                    repository.save(animal);
+                } catch (Exception e) {
+                    System.out.println("Error:" + e.getMessage());
+                    return;
+                }
+                message.setMessage("Animal Created");
+                message.setMessageId(UUID.randomUUID().toString());
+                message.setMessageDate(new Date());
+                template.convertAndSend(MQConfig.EXCHANGE,
+                        MQConfig.ROUTING_KEY, message);
+
+                break;
+            case "Delete animal":
+                String animalStringToDelete = message.getData().toString();
+                System.out.println(message.getData().toString());
+                Animal animalToDelete = new ObjectMapper().readValue(animalStringToDelete, Animal.class);
+
+                Long id = animalToDelete.getId();
+                System.out.println(animalToDelete);
+                try {
+                    repository.deleteById(id);
+                } catch (Exception e) {
+                    System.out.println("Error:" + e.getMessage());
+                    return;
+                }
+                message.setMessage("Animal Deleted");
+                message.setMessageId(UUID.randomUUID().toString());
+                message.setMessageDate(new Date());
+                template.convertAndSend(MQConfig.EXCHANGE,
+                        MQConfig.ROUTING_KEY, message);
+
+                break;
+
+
+        }
     }
 
 

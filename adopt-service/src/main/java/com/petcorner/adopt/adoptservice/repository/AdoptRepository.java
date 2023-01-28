@@ -13,6 +13,11 @@ public interface AdoptRepository extends JpaRepository<Animal, Long> {
     List<Animal> findByAgeBetween(int filterValueMin, int filterValueMax);
 
     List<Animal>  findByProvenance(String filterValue);
+
+    List<Animal>  findByOwner(String username);
+
+    void deleteById(Long id);
+
     @Query("select distinct provenance from Animal")
     List<String>  findDistinctByProvenance();
 
