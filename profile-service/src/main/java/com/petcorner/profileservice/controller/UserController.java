@@ -8,11 +8,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.JsonObject;
+import com.petcorner.profileservice.exception.ResourceNotFoundException;
 import com.petcorner.profileservice.feignproxy.AdoptServiceProxy;
 import com.petcorner.profileservice.model.Role;
 import com.petcorner.profileservice.model.User;
 import com.petcorner.profileservice.queue.CustomMessage;
 import com.petcorner.profileservice.queue.MQConfig;
+import com.petcorner.profileservice.repository.UserRepo;
+import com.petcorner.profileservice.security.CurrentUser;
+import com.petcorner.profileservice.security.UserPrincipal;
 import com.petcorner.profileservice.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +29,11 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,7 +50,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
@@ -54,6 +60,7 @@ public class UserController {
     private final UserService userService;
     @Autowired
     private AdoptServiceProxy proxy;
+    private UserRepo userRepository;
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers() {
@@ -156,6 +163,16 @@ public class UserController {
 //
 //        return ResponseEntity.ok().body(userService.getUser(username));
 //    }
+    @GetMapping("/user/me")
+    @PreAuthorize("hasRole('USER')")
+    public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
+        return userRepository.findById(userPrincipal.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
+    }
+    @GetMapping("/hello")
+    public String getHello() {
+        return "Hello";
+    }
 
 
     @PostMapping("/animal/add-animal")

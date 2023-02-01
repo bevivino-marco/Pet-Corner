@@ -1,11 +1,14 @@
 package com.petcorner.profileservice;
 
+import com.petcorner.profileservice.config.AppProperties;
+import com.petcorner.profileservice.model.AuthProvider;
 import com.petcorner.profileservice.model.Role;
 import com.petcorner.profileservice.model.User;
 import com.petcorner.profileservice.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 
 @SpringBootApplication
 @EnableFeignClients
+@EnableConfigurationProperties(AppProperties.class)
 public class ProfileServiceApplication {
 
 	public static void main(String[] args) {
@@ -36,16 +40,16 @@ public class ProfileServiceApplication {
 			userService.saveRole(new Role(null, "ROLE_SITTER"));
 
 			userService.saveUser(new User(null, "Jhon Travolta",
-					"jhon@gmail.com", "1234", new ArrayList<>()
+					"jhon@gmail.com", "1234", new ArrayList<>(),null, "local"
 					,"bbbbrc94p01c722d",null,"ITA","Turin","Via viosa 3"));
 			userService.saveUser(new User(null, "Marco Bevivino",
-					"marco@gmail.com", "1234", new ArrayList<>()
+					"marco@gmail.com", "1234", new ArrayList<>(),null, "local"
 					,"rrrmrc94p01c722d",null,"ITA","Turin","Via viosa4"));
 			userService.saveUser(new User(null, "Asya Mantovani",
-					"asya@gmail.com", "1234", new ArrayList<>()
+					"asya@gmail.com", "1234", new ArrayList<>(),null, "local"
 					,"aavmrc94p01c722d",null,"ITA","Turin","Via viosa 5"));
 			userService.saveUser(new User(null, "Alessandro Muraro",
-					"ale@gmail.com", "1234", new ArrayList<>()
+					"ale@gmail.com", "1234", new ArrayList<>(),null, "local"
 					,"bq32394p01c722d",null,"ITA","Turin","Via viosa 5"));
 
 

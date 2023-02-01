@@ -2,7 +2,12 @@ package com.petcorner.profileservice.security;
 
 import com.petcorner.profileservice.filter.CustomAuthenticationFilter;
 import com.petcorner.profileservice.filter.CustomerAuthorizationFilter;
+import com.petcorner.profileservice.security.oauth2.CustomOAuth2UserService;
+import com.petcorner.profileservice.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
+import com.petcorner.profileservice.security.oauth2.OAuth2AuthenticationFailureHandler;
+import com.petcorner.profileservice.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +27,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+
+    @Autowired
+    private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+
+    @Autowired
+    private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+
+    @Bean
+    public HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository() {
+        return new HttpCookieOAuth2AuthorizationRequestRepository();
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -35,22 +53,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
         http.cors().disable()
                 .csrf().disable()
-//                .authorizeRequests().antMatchers("/api/v1/login/**", "/api/v1/token/refresh","/api/v1/user/save/**","/api/v1/animal/addtouser").permitAll()
-//                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/api/v1/login/**", "/api/v1/token/refresh","/api/v1/user/save/**","/api/v1/animal/addtouser","/api/v1/animal/publish"
-                ,"/api/v1/user-info/**").permitAll()
+                .authorizeRequests().antMatchers("/api/v1/login/**", "/api/v1/token/refresh","/api/v1/user/save/**").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/api/v1/user/**").hasAnyAuthority("ROLE_USER")
-                .and()
-                .authorizeRequests().antMatchers("/api/v1/animal/userInfo").permitAll()
-                .and()
-//                .authorizeRequests().antMatchers("/api/v1/role/addtouser").authenticated()
+//                .authorizeRequests().antMatchers("/api/v1/hello","/api/v1/user/me","/api/v1/animal/addtouser","/api/v1/animal/publish"
+//                        ,"/api/v1/user-info/**").authenticated()
+//                .and()
+//                .authorizeRequests().antMatchers("/api/v1/user/**").hasAnyAuthority("ROLE_USER")
 //                .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
-                .addFilter(customAuthenticationFilter)
+                .oauth2Login()
+                .authorizationEndpoint()
+                .baseUri("/oauth2/authorize")
+                .authorizationRequestRepository(cookieAuthorizationRequestRepository())
+                .and()
+                .redirectionEndpoint()
+                .baseUri("/oauth2/callback/*")
+                .and()
+                .userInfoEndpoint()
+                .userService(customOAuth2UserService)
+                .and()
+                .successHandler(oAuth2AuthenticationSuccessHandler)
+                .failureHandler(oAuth2AuthenticationFailureHandler);
+
+                http.addFilter(customAuthenticationFilter)
                 .addFilterBefore(new CustomerAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
@@ -62,20 +90,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        final CorsConfiguration config = new CorsConfiguration();
-//
-//        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-//        config.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
-//        config.setAllowCredentials(true);
-//        config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-//
-//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", config);
-//
-//        return source;
-//    }
 
 
 }
