@@ -1,5 +1,6 @@
 package com.petcorner.profileservice.service;
 
+import com.petcorner.profileservice.model.AuthProvider;
 import com.petcorner.profileservice.model.Role;
 import com.petcorner.profileservice.model.User;
 import com.petcorner.profileservice.repository.RoleRepo;
@@ -47,7 +48,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User saveUser(User user) {
         log.info("Saving new user {} to the database", user.getName());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        // controllare se l'uitente é gia presente
+        user.setProvider(AuthProvider.local);
+        user.setProviderId(AuthProvider.local.name());
+        if (userRepo.existsByUsername(user.getUsername())){
+            User userExist = userRepo.findByUsername(user.getUsername());
+            userExist.setUsername(user.getUsername());
+            userExist.setName(user.getName());
+            userExist.setCity(user.getCity());
+            userExist.setProvider(AuthProvider.local);
+            userExist.setProviderId(AuthProvider.local.name());
+            userExist.setPiva(user.getPiva());
+            userExist.setCod_fisc(user.getCod_fisc());
+            userExist.setPassword(user.getPassword());
+            userExist.setAddress(user.getAddress());
+            return userRepo.save(userExist);
+        }
         return userRepo.save(user);
     }
 

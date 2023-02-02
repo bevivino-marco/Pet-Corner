@@ -40,16 +40,16 @@ public class ProfileServiceApplication {
 			userService.saveRole(new Role(null, "ROLE_SITTER"));
 
 			userService.saveUser(new User(null, "Jhon Travolta",
-					"jhon@gmail.com", "1234", new ArrayList<>(),null, "local"
+					"jhon@gmail.com", "1234", new ArrayList<>(),null, null
 					,"bbbbrc94p01c722d",null,"ITA","Turin","Via viosa 3"));
 			userService.saveUser(new User(null, "Marco Bevivino",
-					"marco@gmail.com", "1234", new ArrayList<>(),null, "local"
+					"marco@gmail.com", "1234", new ArrayList<>(),null, null
 					,"rrrmrc94p01c722d",null,"ITA","Turin","Via viosa4"));
 			userService.saveUser(new User(null, "Asya Mantovani",
-					"asya@gmail.com", "1234", new ArrayList<>(),null, "local"
+					"asya@gmail.com", "1234", new ArrayList<>(),null, null
 					,"aavmrc94p01c722d",null,"ITA","Turin","Via viosa 5"));
 			userService.saveUser(new User(null, "Alessandro Muraro",
-					"ale@gmail.com", "1234", new ArrayList<>(),null, "local"
+					"ale@gmail.com", "1234", new ArrayList<>(),null, null
 					,"bq32394p01c722d",null,"ITA","Turin","Via viosa 5"));
 
 
