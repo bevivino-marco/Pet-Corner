@@ -50,7 +50,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/profile/v2")
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
@@ -214,11 +214,11 @@ public class UserController {
 
 
 
-    @RabbitListener(queues = MQConfig.QUEUE)
-    public void listener(CustomMessage message) {
-        System.out.println(message);
-
-    }
+//    @RabbitListener(queues = MQConfig.QUEUE)
+//    public void listener(CustomMessage message) {
+//        System.out.println(message);
+//
+//    }
 
 
 

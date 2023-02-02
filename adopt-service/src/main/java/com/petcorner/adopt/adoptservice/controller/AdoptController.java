@@ -22,7 +22,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/adopt/v2")
 public class AdoptController {
     @Autowired
     private RabbitTemplate template;

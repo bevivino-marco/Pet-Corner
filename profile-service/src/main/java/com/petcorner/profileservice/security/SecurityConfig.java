@@ -50,18 +50,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
-        customAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
+        customAuthenticationFilter.setFilterProcessesUrl("/profile/v2/login");
         http.cors().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/api/v1/login/**", "/api/v1/token/refresh","/api/v1/user/save/**").permitAll()
+                .authorizeRequests().antMatchers("/profile/v2/login/**", "/profile/v2/token/refresh","/profile/v2/user/save/**").permitAll()
                 .and()
-//                .authorizeRequests().antMatchers("/api/v1/hello","/api/v1/user/me","/api/v1/animal/addtouser","/api/v1/animal/publish"
-//                        ,"/api/v1/user-info/**").authenticated()
-//                .and()
-//                .authorizeRequests().antMatchers("/api/v1/user/**").hasAnyAuthority("ROLE_USER")
-//                .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .oauth2Login()
