@@ -12,15 +12,10 @@ import com.petcorner.adopt.adoptservice.repository.AdoptRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
-@CrossOrigin
+
 @RestController
 @RequestMapping("/adopt/v2")
 public class AdoptController {
