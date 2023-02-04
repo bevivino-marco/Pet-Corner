@@ -48,7 +48,6 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
-@CrossOrigin
 @RestController
 @RequestMapping("/profile/v2")
 @RequiredArgsConstructor
@@ -144,7 +143,6 @@ public class UserController {
 
     @GetMapping("/user-info/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
-
         return ResponseEntity.ok().body(userService.getUser(username));
     }
 

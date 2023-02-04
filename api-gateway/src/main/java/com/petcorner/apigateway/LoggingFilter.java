@@ -19,6 +19,8 @@ public class LoggingFilter implements GlobalFilter {
                              GatewayFilterChain chain) {
         logger.info("Path of the request received -> {}",
                 exchange.getRequest().getPath());
+        logger.info("Header of the request received -> {}",
+                exchange.getRequest().getHeaders());
         return chain.filter(exchange);
     }
 
