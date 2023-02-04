@@ -203,7 +203,7 @@ public class UserController {
         message.setMessage("Delete animal");
         message.setMessageId(UUID.randomUUID().toString());
         message.setMessageDate(new Date());
-        template.convertAndSend(MQConfig.EXCHANGE,
+        template.convertAndSend("profile-training-exchange",
                 MQConfig.ROUTING_KEY, message);
         System.out.println(message.getData());
 

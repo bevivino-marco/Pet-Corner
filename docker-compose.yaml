@@ -102,7 +102,7 @@ services:
 
   profile-service:
     container_name: profile-service
-    image: 0109199416081991/mmv2-profile-service:0.2.0-SNAPSHOT
+    image: 0109199416081991/mmv2-profile-service:0.2.1-SNAPSHOT
     restart: unless-stopped
     ports:
       - "9000:9000"
@@ -125,7 +125,7 @@ services:
 
   api-gateway:
     container_name: api-gateway
-    image: 0109199416081991/mmv2-api-gateway:0.0.1-SNAPSHOT
+    image: 0109199416081991/mmv2-api-gateway:0.1.0-SNAPSHOT
     restart: unless-stopped
     ports:
       - "8765:8765"
@@ -206,19 +206,9 @@ services:
       - pet-corner
 
 
-  profile-adopt-queue:
-    container_name: profile-adopt-queue
-    image: rabbitmq:3.8.12-management
-    restart: unless-stopped
-    ports:
-      - "5673:5672"
-      - "15673:15672"
-    networks:
-      - pet-corner
-
   naming-server:
     container_name: naming-server
-    image: 0109199416081991/mmv2-naming-server:0.0.1-SNAPSHOT
+    image: 0109199416081991/mmv2-naming-server:0.1.0-SNAPSHOT
     restart: unless-stopped
     ports:
       - "8761:8761"
