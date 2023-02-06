@@ -1,0 +1,63 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: adopt-service
+  labels:
+    name: springboot-postgres-k8s
+spec:
+  ports:
+    - nodePort: 30800
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
+  selector:
+    app: adopt
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adopt-deployment
+spec:
+  selector:
+    matchLabels:
+      app: adopt
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: adopt
+    spec:
+      containers:
+        - name: springboot-postgres-k8s
+          image: 0109199416081991/mmv2-adopt-service:0.3.0-SNAPSHOT
+          ports:
+            - containerPort: 8000
+          env:   # Setting Enviornmental Variables
+            - name: DB_HOST   # Setting Database host address from configMap
+              valueFrom:
+                configMapKeyRef:
+                  name: adopt-conf  # name of configMap
+                  key: host
+            - name: DB_NAME  # Setting Database name from configMap
+              valueFrom:
+                configMapKeyRef:
+                  name: adopt-conf
+                  key: name
+            - name: POSTGRES_USER  # Setting Database username from Secret
+              valueFrom:
+                secretKeyRef:
+                  name: adopt-db-credentials # Secret Name
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD # Setting Database password from Secret
+              valueFrom:
+                secretKeyRef:
+                  name: adopt-db-credentials
+                  key: postgres_password
+            - name: DB_PORT   # Setting Database host address from configMap
+              value: "5432"
+            - name: EUREKA_URL   # Setting Database host address from configMap
+              value:
+
+

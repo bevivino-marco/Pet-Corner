@@ -80,7 +80,7 @@ services:
 
   adopt-service:
     container_name: adopt-service
-    image: 0109199416081991/mmv2-adopt-service:0.2.1-SNAPSHOT
+    image: 0109199416081991/mmv2-adopt-service:0.3.0-SNAPSHOT
     restart: unless-stopped
     ports:
       - "8000:8000"
@@ -91,9 +91,13 @@ services:
     networks:
       - pet-corner
     environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      SPRING.DATASOURCE.URL: jdbc:postgresql://adopt-db:5432/adopt-db
-      SPRING.ZIPKIN.BASE-URL: http://tracing-server:9411/
+      EUREKA_URL: http://naming-server:8761/eureka
+      DB_PORT : 5432
+      POSTGRES_PASSWORD : password
+      POSTGRES_USER : admin
+      DB_HOST : adopt-db
+      DB_NAME : adopt-db
+      ZIPKIN_URL: http://tracing-server:9411/
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit

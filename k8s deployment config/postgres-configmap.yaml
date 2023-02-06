@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: adopt-db-config
+  labels:
+    app: adopt-db
+data:
+  POSTGRES_DB: adopt-db
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: password
