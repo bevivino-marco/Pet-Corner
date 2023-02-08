@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: profile-k8s
-          image: 0109199416081991/mmv2-profile-service:0.3.0
+          image: 0109199416081991/mmv2-profile-service:0.3.0-SNAPSHOT
           ports:
             - containerPort: 9000
           env:
@@ -63,6 +63,5 @@ spec:
               value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local"
             - name: RABBIT_URI
               value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
-#              kubectl -n rabbits port-forward rabbitmq-0 8080:15672
-
+#  kubectl port-forward adopt-deployment-6c44896968-7dr7k 9000:9000
 

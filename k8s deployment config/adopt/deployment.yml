@@ -63,6 +63,7 @@ spec:
               value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local"
             - name: RABBIT_URI
               value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
-#              kubectl -n rabbits port-forward rabbitmq-0 8080:15672
-
+            - name: EUREKA_URL
+              value: "eureka-deployment-5b8f5cb49c-cqsz8.default.svc.cluster.local:5671"
+#  kubectl port-forward adopt-deployment-6c44896968-7dr7k 8000:8000
 
