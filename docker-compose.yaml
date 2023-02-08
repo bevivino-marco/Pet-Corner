@@ -106,7 +106,7 @@ services:
 
   profile-service:
     container_name: profile-service
-    image: 0109199416081991/mmv2-profile-service:0.2.3-SNAPSHOT
+    image: 0109199416081991/mmv2-profile-service:0.3.0-SNAPSHOT
     restart: unless-stopped
     ports:
       - "9000:9000"
@@ -117,9 +117,13 @@ services:
     networks:
       - pet-corner
     environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      SPRING.DATASOURCE.URL: jdbc:postgresql://profile-db:5432/profile-db
-      SPRING.ZIPKIN.BASE-URL: http://tracing-server:9411/
+      EUREKA_URL: http://naming-server:8761/eureka
+      DB_PORT : 5432
+      POSTGRES_PASSWORD : password
+      POSTGRES_USER : admin
+      DB_HOST : profile-db
+      DB_NAME : profile-db
+      ZIPKIN_URL: http://tracing-server:9411/
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
