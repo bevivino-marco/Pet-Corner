@@ -1,0 +1,22 @@
+minikube start --driver=docker
+minikube dashboard
+OPEN ANOTHER TERMINAL
+minikube tunnel
+
+
+///////For the first start, run this command for each file in its directory running first config and  secretsS
+kubectl apply -n name_of_the_network -f name_of_the_file
+///////
+
+OPEN ANOTHER TERMINAL
+kubectl port-forward adopt-deployment-7dc4b77fcb-7bg4c 8000:8000     NB: pod name can change
+OPEN ANOTHER TERMINAL
+kubectl port-forward profile-deployment-d64879847-xjtjf 9000:9000    NB: pod name can change
+OPEN ANOTHER TERMINAL
+kubectl -n rabbits port-forward rabbitmq-0 8080:15672
+OPEN ANOTHER TERMINAL
+kubectl port-forward eureka-0 8761:8761
+OPEN ANOTHER TERMINAL
+kubectl port-forward api-gateway-0 8761:8761
+
+

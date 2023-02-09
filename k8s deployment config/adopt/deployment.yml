@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: adopt-service
+  name: adopt
   labels:
-    name: springboot-postgres-k8s
+    name: adopt
 spec:
   ports:
     - nodePort: 30800
@@ -16,10 +16,11 @@ spec:
 
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: adopt-deployment
+  name: adopt
 spec:
+  serviceName: "adopt"
   selector:
     matchLabels:
       app: adopt
@@ -30,7 +31,7 @@ spec:
         app: adopt
     spec:
       containers:
-        - name: springboot-postgres-k8s
+        - name: adopt
           image: 0109199416081991/mmv2-adopt-service:0.3.0-SNAPSHOT
           ports:
             - containerPort: 8000
@@ -64,6 +65,6 @@ spec:
             - name: RABBIT_URI
               value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
             - name: EUREKA_URL
-              value: "eureka-deployment-5b8f5cb49c-cqsz8.default.svc.cluster.local:5671"
-#  kubectl port-forward adopt-deployment-6c44896968-7dr7k 8000:8000
+              value: "http://eureka-0.eureka.default.svc.cluster.local:8761/eureka"
+#  kubectl port-forward eureka-0 8761:8761
 

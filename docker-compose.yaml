@@ -133,7 +133,7 @@ services:
 
   api-gateway:
     container_name: api-gateway
-    image: 0109199416081991/mmv2-api-gateway:0.1.0-SNAPSHOT
+    image: 0109199416081991/mmv2-api-gateway:0.3.0-SNAPSHOT
     restart: unless-stopped
     ports:
       - "8765:8765"
@@ -142,9 +142,8 @@ services:
     networks:
       - pet-corner
     environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-      SPRING.DATASOURCE.URL: jdbc:postgresql://profile-db:5432/profile-db
-      SPRING.ZIPKIN.BASE-URL: http://tracing-server:9411/
+      EUREKA_URL: http://naming-server:8761/eureka
+      ZIPKIN_URL: http://tracing-server:9411/
 
 #  spring.rabbitmq.addresses = localhost:5672
 

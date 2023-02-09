@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: profile-service
+  name: profile
   labels:
-    name: profile-k8s
+    name: profile
 spec:
   ports:
     - nodePort: 30900
@@ -16,10 +16,11 @@ spec:
 
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: profile-deployment
+  name: profile
 spec:
+  serviceName: "profile"
   selector:
     matchLabels:
       app: profile
@@ -30,7 +31,7 @@ spec:
         app: profile
     spec:
       containers:
-        - name: profile-k8s
+        - name: profile
           image: 0109199416081991/mmv2-profile-service:0.3.0-SNAPSHOT
           ports:
             - containerPort: 9000
@@ -63,5 +64,8 @@ spec:
               value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local"
             - name: RABBIT_URI
               value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
+            - name: EUREKA_URL
+              value: "http://eureka-0.eureka.default.svc.cluster.local:8761/eureka"
+
 #  kubectl port-forward adopt-deployment-6c44896968-7dr7k 9000:9000
 
