@@ -19,4 +19,5 @@ kubectl port-forward eureka-0 8761:8761
 OPEN ANOTHER TERMINAL
 kubectl port-forward api-gateway-0 8761:8761
 
-
+Connessione DB
+kubectl exec -it postgres-b99fb4f4c-j6htn --  psql -h localhost -U admin --password -p 5432 adopt-db
