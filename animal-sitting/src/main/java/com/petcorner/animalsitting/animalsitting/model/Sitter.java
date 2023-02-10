@@ -1,7 +1,8 @@
 package com.petcorner.animalsitting.animalsitting.model;
 
-import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -20,15 +21,17 @@ public class Sitter {
     private String name;
     private String surname;
     private int age;
+    private String owner;
     private String locality;
     private String personalDescription;
     private String animalsAllowed;
     private int sizeAllowed;
 
-    public Sitter(String name, String surname, int age, String locality, String personalDescription, String animalsAllowed, int sizeAllowed) {
+    public Sitter(String name, String surname, int age, String owner, String locality, String personalDescription, String animalsAllowed, int sizeAllowed) {
         this.name = name;
         this.surname = surname;
         this.age = age;
+        this.owner = owner;
         this.locality = locality;
         this.personalDescription = personalDescription;
         this.animalsAllowed = animalsAllowed;
@@ -53,6 +56,14 @@ public class Sitter {
 
     public int getAge() {
         return age;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public void setAge(int age) {

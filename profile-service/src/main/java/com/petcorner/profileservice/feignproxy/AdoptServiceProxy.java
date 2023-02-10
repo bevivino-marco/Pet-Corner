@@ -18,4 +18,12 @@ public interface AdoptServiceProxy {
     public String addAnimal(@RequestBody Object animal, @RequestHeader (HttpHeaders.AUTHORIZATION) String token);
 
 
+    @PostMapping("/api/v1/animalsTherapy/add")
+    public String addAnimalTherapy(@RequestBody Object animalTherapy, @RequestHeader (HttpHeaders.AUTHORIZATION) String token);
+
+    @PostMapping("/api/v1/animalsSitter/add")
+    public String addAnimalSitter(@RequestBody Object animalSitter, @RequestHeader (HttpHeaders.AUTHORIZATION) String token);
+
+    @PostMapping("/api/v1/animalsTrainer/add")
+    public String addAnimalTrainer(@RequestBody Object animalTrainer, @RequestHeader (HttpHeaders.AUTHORIZATION) String token);
 }

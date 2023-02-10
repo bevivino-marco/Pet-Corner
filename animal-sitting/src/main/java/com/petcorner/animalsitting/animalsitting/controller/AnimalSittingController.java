@@ -1,17 +1,26 @@
 package com.petcorner.animalsitting.animalsitting.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petcorner.animalsitting.animalsitting.model.AnimalSittingModel;
 import com.petcorner.animalsitting.animalsitting.model.Sitter;
+import com.petcorner.animalsitting.animalsitting.queue.CustomMessage;
+import com.petcorner.animalsitting.animalsitting.queue.MQConfig;
 import com.petcorner.animalsitting.animalsitting.repository.AnimalSittingRepository;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.io.IOException;
 import java.util.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/sitting/v2")
 public class AnimalSittingController {
+    @Autowired
+    private RabbitTemplate template;
     @Autowired
     private AnimalSittingRepository repository;
     @Autowired
@@ -234,14 +243,63 @@ public class AnimalSittingController {
 
     }
 
-    @PostMapping("/sitters/add")
-    public Sitter addSitter(@RequestBody Sitter sitter){
-        try {
-            repository.save(sitter);
-        } catch (Exception e){
-            System.out.println("Error:"+ e.getMessage());
-            return null;
+   // @PostMapping("/sitters/add")
+   // public Sitter addSitter(@RequestBody Sitter sitter){
+   //     try {
+   //         repository.save(sitter);
+   //     } catch (Exception e){
+   //         System.out.println("Error:"+ e.getMessage());
+   //         return null;
+   //     }
+   //     return sitter;
+   // }
+
+    @RabbitListener(queues = MQConfig.QUEUE)
+    public void listener(CustomMessage message) throws IOException {
+
+        switch (message.getMessage()) {
+            case "Create animal sitter":
+                String sitterString = message.getData().toString();
+                System.out.println(message.getData().toString());
+                Sitter animalSitter = new ObjectMapper().readValue(sitterString, Sitter.class);
+
+
+                System.out.println(animalSitter);
+                try {
+                    repository.save(animalSitter);
+                } catch (Exception e) {
+                    System.out.println("Error:" + e.getMessage());
+                    break;
+                }
+                message.setMessage("Create Animal Sitter");
+                message.setMessageId(UUID.randomUUID().toString());
+                message.setMessageDate(new Date());
+                template.convertAndSend(MQConfig.EXCHANGE,
+                        MQConfig.ROUTING_KEY, message);
+
+                break;
+            case "Delete animal Sitter":
+                String sitterStringToDelete = message.getData().toString();
+                System.out.println(message.getData().toString());
+                Sitter sitterToDelete = new ObjectMapper().readValue(sitterStringToDelete, Sitter.class);
+
+                Long id = sitterToDelete.getId();
+                System.out.println(sitterToDelete);
+                try {
+                    repository.deleteById(id);
+                } catch (Exception e) {
+                    System.out.println("Error:" + e.getMessage());
+                    break;
+                }
+                message.setMessage("Sitter Deleted");
+                message.setMessageId(UUID.randomUUID().toString());
+                message.setMessageDate(new Date());
+                template.convertAndSend(MQConfig.EXCHANGE,
+                        MQConfig.ROUTING_KEY, message);
+
+                break;
+
+
         }
-        return sitter;
     }
 }

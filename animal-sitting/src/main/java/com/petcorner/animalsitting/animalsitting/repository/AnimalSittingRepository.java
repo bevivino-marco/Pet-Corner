@@ -19,4 +19,6 @@ public interface AnimalSittingRepository extends JpaRepository<Sitter, Long> {
     List<Sitter> findByAnimalsAllowed(String animalAllowed);
 
     List<Sitter>  findByLocalityIgnoreCase(String locality);
+
+    Sitter findByOwner(String owner);
 }

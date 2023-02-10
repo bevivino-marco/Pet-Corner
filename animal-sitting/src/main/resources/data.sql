@@ -25,3 +25,4 @@ values(6, 'Marco','Bevivino',27,'Bolzano','esperto di cani','dog');
 insert into sitter
 (id, name,surname, age, locality, personal_description, animals_allowed, size_allowed)
 values(7, 'Nicole','Morando',25,'Roma','esperto di rapaci e uccelli','birdsOfPrey_birds');
+

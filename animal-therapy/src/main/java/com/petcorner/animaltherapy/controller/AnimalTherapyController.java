@@ -2,16 +2,31 @@ package com.petcorner.animaltherapy.controller;
 
 import com.petcorner.animaltherapy.model.AnimalTherapy;
 import com.petcorner.animaltherapy.model.AnimalTherapyModel;
+import com.petcorner.animaltherapy.queue.CustomMessage;
+import com.petcorner.animaltherapy.queue.MQConfig;
 import com.petcorner.animaltherapy.repository.AnimalTherapyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.io.IOException;
+import java.util.*;
 
 import java.util.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/therapy/v2")
 public class AnimalTherapyController {
+    @Autowired private RabbitTemplate template;
     @Autowired
     private AnimalTherapyRepository repository;
     @Autowired
@@ -238,15 +253,66 @@ public class AnimalTherapyController {
 
     }
 
+    //fare metodo findByOwner
 
-    @PostMapping("/animalsTherapy/add")
-    public AnimalTherapy addAnimalTherapy(@RequestBody AnimalTherapy animalTherapy){
-        try {
-            repository.save(animalTherapy);
-        } catch (Exception e){
-            System.out.println("Error:"+ e.getMessage());
-            return null;
+
+    // @PostMapping("/animalsTherapy/add")
+    //  public AnimalTherapy addAnimalTherapy(@RequestBody AnimalTherapy animalTherapy){
+    //    try {
+    //        repository.save(animalTherapy);
+    //    } catch (Exception e){
+    //        System.out.println("Error:"+ e.getMessage());
+    //        return null;
+    //    }
+    //    return animalTherapy;
+    //}
+
+    @RabbitListener(queues = MQConfig.QUEUE)
+    public void listener(CustomMessage message) throws IOException {
+
+        switch (message.getMessage()) {
+            case "Create animal therapy":
+                String animalString = message.getData().toString();
+                System.out.println(message.getData().toString());
+                AnimalTherapy animalTherapy = new ObjectMapper().readValue(animalString, AnimalTherapy.class);
+
+
+                System.out.println(animalTherapy);
+                try {
+                    repository.save(animalTherapy);
+                } catch (Exception e) {
+                    System.out.println("Error:" + e.getMessage());
+                    break;
+                }
+                message.setMessage("Create Animal Therapy");
+                message.setMessageId(UUID.randomUUID().toString());
+                message.setMessageDate(new Date());
+                template.convertAndSend(MQConfig.EXCHANGE,
+                        MQConfig.ROUTING_KEY, message);
+
+                break;
+            case "Delete animal Therapy":
+                String animalStringToDelete = message.getData().toString();
+                System.out.println(message.getData().toString());
+                AnimalTherapy animalToDelete = new ObjectMapper().readValue(animalStringToDelete, AnimalTherapy.class);
+
+                Long id = animalToDelete.getId();
+                System.out.println(animalToDelete);
+                try {
+                    repository.deleteById(id);
+                } catch (Exception e) {
+                    System.out.println("Error:" + e.getMessage());
+                    break;
+                }
+                message.setMessage("Animal Deleted");
+                message.setMessageId(UUID.randomUUID().toString());
+                message.setMessageDate(new Date());
+                template.convertAndSend(MQConfig.EXCHANGE,
+                        MQConfig.ROUTING_KEY, message);
+
+                break;
+
+
         }
-        return animalTherapy;
     }
 }

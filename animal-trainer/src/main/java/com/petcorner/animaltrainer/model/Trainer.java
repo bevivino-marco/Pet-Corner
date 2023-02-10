@@ -1,7 +1,9 @@
 package com.petcorner.animaltrainer.model;
 
-import jakarta.persistence.*;
+
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -20,6 +22,7 @@ public class Trainer {
         private String name;
         private String surname;
         private int age;
+        private String owner;
         private String locality;
         private String personalDescription;
         private String animalsAllowed;
@@ -61,7 +64,15 @@ public class Trainer {
             this.age = age;
         }
 
-        public String getLocality() {
+        public String getOwner() {
+            return owner;
+        }
+
+        public void setOwner(String owner) {
+            this.owner = owner;
+        }
+
+    public String getLocality() {
             return locality;
         }
 

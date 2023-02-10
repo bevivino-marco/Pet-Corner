@@ -212,6 +212,118 @@ public class UserController {
 
 
 
+    @PostMapping("/animalTherapy/add-animalTherapy")
+    public String addAnimalTherapy(@RequestBody Object animalTherapy, @RequestHeader (HttpHeaders.AUTHORIZATION) String token) throws JSONException {
+        return proxy.addAnimalTherapy(animalTherapy, token);
+    }
+
+    @PostMapping("/animalTherapy/add-animalTherapy-queue")
+    public String addAnimalTherapyToUser(@RequestBody Object animalTherapy) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(animalTherapy);
+        CustomMessage message = new CustomMessage();
+        message.setData(json);
+        message.setMessage("Create animal therapy");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend("pet-therapy",
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal therapy Sent";
+    }
+
+    @PostMapping("/animalTherapy/delete-animalTherapy-queue")
+    public String removeAnimalTherapyOfUser(@RequestBody Object animalTherapy) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(animalTherapy);
+        CustomMessage message = new CustomMessage();
+        message.setData(json);
+        message.setMessage("Delete animal therapy");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend("pet-therapy",
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal therapy Sent";
+    }
+
+    @PostMapping("/animalTrainer/add-animalTrainer")
+    public String addAnimalTrainer(@RequestBody Object animalTrainer, @RequestHeader (HttpHeaders.AUTHORIZATION) String token) throws JSONException {
+        return proxy.addAnimalTrainer(animalTrainer, token);
+    }
+
+    @PostMapping("/animalTrainer/add-animalTrainer-queue")
+    public String addAnimalTrainerToUser(@RequestBody Object animalTrainer) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(animalTrainer);
+        CustomMessage message = new CustomMessage();
+        message.setData(json);
+        message.setMessage("Create animal trainer");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend("pet-trainer",
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal trainer Sent";
+    }
+
+    @PostMapping("/animalTrainer/delete-animalTrainer-queue")
+    public String removeAnimalTrainerOfUser(@RequestBody Object animalTrainer) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(animalTrainer);
+        CustomMessage message = new CustomMessage();
+        message.setData(json);
+        message.setMessage("Delete animal trainer");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend("pet-trainer",
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal trainer Sent";
+    }
+
+    @PostMapping("/animalSitter/add-animalSitter")
+    public String addAnimalSitter(@RequestBody Object animalSitter, @RequestHeader (HttpHeaders.AUTHORIZATION) String token) throws JSONException {
+        return proxy.addAnimalSitter(animalSitter, token);
+    }
+
+    @PostMapping("/animalSitter/add-animalSitter-queue")
+    public String addAnimalSitterToUser(@RequestBody Object animalSitter) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(animalSitter);
+        CustomMessage message = new CustomMessage();
+        message.setData(json);
+        message.setMessage("Create animal sitter");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend("pet-sitter",
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal sitter Sent";
+    }
+
+    @PostMapping("/animalSitter/delete-animalSitter-queue")
+    public String removeAnimalSitterOfUser(@RequestBody Object animalSitter) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(animalSitter);
+        CustomMessage message = new CustomMessage();
+        message.setData(json);
+        message.setMessage("Delete animal sitter");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend("pet-sitter",
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal sitter Sent";
+    }
+
+
 //    @RabbitListener(queues = MQConfig.QUEUE)
 //    public void listener(CustomMessage message) {
 //        System.out.println(message);

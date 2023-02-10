@@ -16,6 +16,7 @@ public class AnimalTherapy {
     private Long id;
     private String name;
     private int age;
+    private String owner;
 
     @Column(name="animal_size")
     private int size;
@@ -30,10 +31,11 @@ public class AnimalTherapy {
     public AnimalTherapy() {
     }
 
-    public AnimalTherapy(String name, int age, int size, String provenance, String type, String description) {
+    public AnimalTherapy(String name, int age, String owner, int size, String provenance, String type, String description) {
 
         this.name = name;
         this.age = age;
+        this.owner = owner;
         this.size = size;
         this.type=type;
         this.description=description;
@@ -78,6 +80,14 @@ public class AnimalTherapy {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public int getSize() {

@@ -19,4 +19,6 @@ public interface AnimalTrainingRepository extends JpaRepository<Trainer, Long> {
     List<Trainer> findByAnimalsAllowed(String animalAllowed);
 
     List<Trainer>  findByLocalityIgnoreCase(String locality);
+
+    Trainer findByOwner(String owner);
 }

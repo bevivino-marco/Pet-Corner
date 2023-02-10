@@ -1,19 +1,27 @@
 package com.petcorner.animaltrainer.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petcorner.animaltrainer.model.Trainer;
 import com.petcorner.animaltrainer.model.AnimalTrainerModel;
+import com.petcorner.animaltrainer.queue.CustomMessage;
+import com.petcorner.animaltrainer.queue.MQConfig;
 import com.petcorner.animaltrainer.repository.AnimalTrainingRepository;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.*;
 @CrossOrigin
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/trainer/v2")
 public class AnimalTrainerController {
     /**
      *
      */
+    @Autowired
+    private RabbitTemplate template;
     @Autowired
     private AnimalTrainingRepository repository;
     @Autowired
@@ -239,14 +247,63 @@ public class AnimalTrainerController {
     }
 
     //fare metodo per aggiunta Sitter postMapping
-    @PostMapping("/trainers/add")
-    public Trainer addTrainer(@RequestBody Trainer trainer){
-        try {
-            repository.save(trainer);
-        } catch (Exception e){
-            System.out.println("Error:"+ e.getMessage());
-            return null;
+    // @PostMapping("/trainers/add")
+    // public Trainer addTrainer(@RequestBody Trainer trainer){
+    //     try {
+    //         repository.save(trainer);
+    //     } catch (Exception e){
+    //         System.out.println("Error:"+ e.getMessage());
+    //         return null;
+    //     }
+    //     return trainer;
+    // }
+
+    @RabbitListener(queues = MQConfig.QUEUE)
+    public void listener(CustomMessage message) throws IOException {
+
+        switch (message.getMessage()) {
+            case "Create animal trainer":
+                String trainerString = message.getData().toString();
+                System.out.println(message.getData().toString());
+                Trainer animalTrainer = new ObjectMapper().readValue(trainerString, Trainer.class);
+
+
+                System.out.println(animalTrainer);
+                try {
+                    repository.save(animalTrainer);
+                } catch (Exception e) {
+                    System.out.println("Error:" + e.getMessage());
+                    break;
+                }
+                message.setMessage("Create Animal Trainer");
+                message.setMessageId(UUID.randomUUID().toString());
+                message.setMessageDate(new Date());
+                template.convertAndSend(MQConfig.EXCHANGE,
+                        MQConfig.ROUTING_KEY, message);
+
+                break;
+            case "Delete animal Trainer":
+                String trainerStringToDelete = message.getData().toString();
+                System.out.println(message.getData().toString());
+                Trainer trainerToDelete = new ObjectMapper().readValue(trainerStringToDelete, Trainer.class);
+
+                Long id = trainerToDelete.getId();
+                System.out.println(trainerToDelete);
+                try {
+                    repository.deleteById(id);
+                } catch (Exception e) {
+                    System.out.println("Error:" + e.getMessage());
+                    break;
+                }
+                message.setMessage("Trainer Deleted");
+                message.setMessageId(UUID.randomUUID().toString());
+                message.setMessageDate(new Date());
+                template.convertAndSend(MQConfig.EXCHANGE,
+                        MQConfig.ROUTING_KEY, message);
+
+                break;
+
+
         }
-        return trainer;
     }
 }
