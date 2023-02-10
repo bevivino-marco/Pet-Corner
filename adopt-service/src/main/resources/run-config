@@ -1,0 +1,7 @@
+-DDB_HOST=localhost
+-DDB_NAME=adopt-db
+-DDB_PORT=5433
+-DPOSTGRES_USER=admin
+-DPOSTGRES_PASSWORD=password
+-DZIPKIN_URL=http://localhost:9411/
+-DEUREKA_URL=http://localhost:8761/eureka

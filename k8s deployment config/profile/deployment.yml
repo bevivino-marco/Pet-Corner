@@ -1,0 +1,71 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: profile
+  labels:
+    name: profile
+spec:
+  ports:
+    - nodePort: 30900
+      port: 9000
+      targetPort: 9000
+      protocol: TCP
+  selector:
+    app: profile
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: profile
+spec:
+  serviceName: "profile"
+  selector:
+    matchLabels:
+      app: profile
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: profile
+    spec:
+      containers:
+        - name: profile
+          image: 0109199416081991/mmv2-profile-service:0.3.0-SNAPSHOT
+          ports:
+            - containerPort: 9000
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: profile-conf
+                  key: host
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: profile-conf
+                  key: name
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: profile-db-credentials
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: profile-db-credentials
+                  key: postgres_password
+            - name: DB_PORT
+              value: "5432"
+            - name: SPRING_RABBITMQ_ADDRESSES
+              value: "amqp://guest:guest@rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
+            - name: SPRING_RABBITMQ_HOST
+              value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local"
+            - name: RABBIT_URI
+              value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
+            - name: EUREKA_URL
+              value: "http://eureka-0.eureka.default.svc.cluster.local:8761/eureka"
+
+#  kubectl port-forward adopt-deployment-6c44896968-7dr7k 9000:9000
+
