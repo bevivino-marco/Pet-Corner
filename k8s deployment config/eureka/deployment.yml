@@ -50,3 +50,4 @@ spec:
               value: ${MY_POD_NAME}.eureka
   # No need to start the pods in order. We just need the stable network identity
 #  podManagementPolicy: "Parallel"
+#  kubectl port-forward eureka-0 8761:8761
