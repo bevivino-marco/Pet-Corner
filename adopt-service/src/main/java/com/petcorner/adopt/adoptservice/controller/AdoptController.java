@@ -261,31 +261,6 @@ public class AdoptController {
     }
 
 
-//    @PostMapping("/animals/add")
-//    public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal, @RequestHeader (HttpHeaders.AUTHORIZATION) String token){
-//        System.out.println("Adopt chiamato");
-//        System.out.println(animal.toString());
-//
-//        try {
-//            repository.save(animal);
-//        } catch (Exception e){
-//            System.out.println("Error:"+ e.getMessage());
-//            return null;
-//        }
-//        HttpHeaders responseHeaders = new HttpHeaders();
-//        responseHeaders.set("AUTHORIZATION",
-//                token);
-//
-//        return ResponseEntity.ok()
-//                .headers(responseHeaders)
-//                .body(animal);
-//    }
-
-//    @GetMapping("/animal/provafeign")
-//    public void getUserInfo(){
-//        System.out.println("chiamato");
-//    }
-
 
     @RabbitListener(queues = MQConfig.QUEUE)
     public void listener(CustomMessage message) throws IOException {

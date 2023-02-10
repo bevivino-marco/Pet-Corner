@@ -5,16 +5,14 @@ import com.petcorner.animaltherapy.model.AnimalTherapyModel;
 import com.petcorner.animaltherapy.queue.CustomMessage;
 import com.petcorner.animaltherapy.queue.MQConfig;
 import com.petcorner.animaltherapy.repository.AnimalTherapyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
@@ -26,7 +24,8 @@ import java.util.*;
 @RestController
 @RequestMapping("/therapy/v2")
 public class AnimalTherapyController {
-    @Autowired private RabbitTemplate template;
+    @Autowired
+    private RabbitTemplate template;
     @Autowired
     private AnimalTherapyRepository repository;
     @Autowired
@@ -253,7 +252,17 @@ public class AnimalTherapyController {
 
     }
 
-    //fare metodo findByOwner
+    @GetMapping("/animals/owner/{username}")
+    public List<AnimalTherapy> getAnimalsByOwner(@PathVariable String username){
+        List<AnimalTherapy> response;
+        try {
+            response = new ArrayList<>(repository.findByOwner(username));
+        } catch (Exception e){
+            System.out.println("Error:"+ e.getMessage());
+            return null;
+        }
+        return response;
+    }
 
 
     // @PostMapping("/animalsTherapy/add")
@@ -284,14 +293,14 @@ public class AnimalTherapyController {
                     System.out.println("Error:" + e.getMessage());
                     break;
                 }
-                message.setMessage("Create Animal Therapy");
+                message.setMessage("Delete animal therapy");
                 message.setMessageId(UUID.randomUUID().toString());
                 message.setMessageDate(new Date());
                 template.convertAndSend(MQConfig.EXCHANGE,
                         MQConfig.ROUTING_KEY, message);
 
                 break;
-            case "Delete animal Therapy":
+            case "Delete animal therapy":
                 String animalStringToDelete = message.getData().toString();
                 System.out.println(message.getData().toString());
                 AnimalTherapy animalToDelete = new ObjectMapper().readValue(animalStringToDelete, AnimalTherapy.class);

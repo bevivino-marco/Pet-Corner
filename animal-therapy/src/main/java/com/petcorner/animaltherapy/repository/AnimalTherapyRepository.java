@@ -20,5 +20,5 @@ public interface AnimalTherapyRepository extends JpaRepository<AnimalTherapy, Lo
 
     List<AnimalTherapy>  findByProvenanceIgnoreCase(String provenance);
 
-    AnimalTherapy findByOwner(String owner);
+    List<AnimalTherapy> findByOwner(String owner);
 }

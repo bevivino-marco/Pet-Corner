@@ -1,60 +1,60 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: profile
+  name: therapy
   labels:
-    name: profile
+    name: therapy
 spec:
   ports:
-    - nodePort: 30900
-      port: 9000
-      targetPort: 9000
+    - nodePort: 30600
+      port: 6000
+      targetPort: 6000
       protocol: TCP
   selector:
-    app: profile
+    app: therapy
   type: NodePort
 
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: profile
+  name: therapy
 spec:
-  serviceName: "profile"
+  serviceName: "therapy"
   selector:
     matchLabels:
-      app: profile
+      app: therapy
   replicas: 3
   template:
     metadata:
       labels:
-        app: profile
+        app: therapy
     spec:
       containers:
-        - name: profile
-          image: 0109199416081991/mmv2-profile-service:0.3.1-SNAPSHOT
+        - name: therapy
+          image: 0109199416081991/mmv2-animal-therapy:0.3.1-SNAPSHOT
           ports:
-            - containerPort: 9000
+            - containerPort: 6000
           env:
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: profile-conf
+                  name: therapy-conf
                   key: host
             - name: DB_NAME
               valueFrom:
                 configMapKeyRef:
-                  name: profile-conf
+                  name: therapy-conf
                   key: name
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: profile-db-credentials
+                  name: therapy-db-credentials
                   key: postgres_user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: profile-db-credentials
+                  name: therapy-db-credentials
                   key: postgres_password
             - name: DB_PORT
               value: "5432"
@@ -66,6 +66,5 @@ spec:
               value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
             - name: EUREKA_URL
               value: "http://eureka-0.eureka.default.svc.cluster.local:8761/eureka"
-
-#  kubectl port-forward adopt-deployment-6c44896968-7dr7k 9000:9000
+#  kubectl port-forward eureka-0 8761:8761
 

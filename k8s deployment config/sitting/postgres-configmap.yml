@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sitting-conf
+data:
+  host: postgres
+  name: sitting-db

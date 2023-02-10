@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.petcorner.animal-sitting</groupId>
 	<artifactId>animal-sitting</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.3.0-SNAPSHOT</version>
 	<name>animal-sitting</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -84,6 +84,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -104,7 +109,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>asya14/mmv2-${project.artifactId}:${project.version}</name>
+						<name>0109199416081991/mmv2-${project.artifactId}:${project.version}</name>
 					</image>
 					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 				</configuration>

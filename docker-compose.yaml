@@ -104,9 +104,86 @@ services:
       SPRING_RABBITMQ_ADDRESSES: rabbitmq:5672
 
 
+  sitting-service:
+    container_name: sitting-service
+    image: 0109199416081991/mmv2-animal-sitting:0.3.0-SNAPSHOT
+    restart: unless-stopped
+    ports:
+      - "7000:7000"
+    depends_on:
+      - sitting-db
+      - naming-server
+      - rabbitmq
+    networks:
+      - pet-corner
+    environment:
+      EUREKA_URL: http://naming-server:8761/eureka
+      DB_PORT : 5432
+      POSTGRES_PASSWORD : password
+      POSTGRES_USER : admin
+      DB_HOST : sitting-db
+      DB_NAME : sitting-db
+      ZIPKIN_URL: http://tracing-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING_RABBITMQ_ADDRESSES: rabbitmq:5672
+
+  training-service:
+    container_name: training-service
+    image: 0109199416081991/mmv2-animal-trainer:0.3.0-SNAPSHOT
+    restart: unless-stopped
+    ports:
+      - "6500:6500"
+    depends_on:
+      - trainer-db
+      - naming-server
+      - rabbitmq
+    networks:
+      - pet-corner
+    environment:
+      EUREKA_URL: http://naming-server:8761/eureka
+      DB_PORT : 5432
+      POSTGRES_PASSWORD : password
+      POSTGRES_USER : admin
+      DB_HOST : trainer-db
+      DB_NAME : trainer-db
+      ZIPKIN_URL: http://tracing-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING_RABBITMQ_ADDRESSES: rabbitmq:5672
+
+
+  therapy-service:
+    container_name: therapy-service
+    image: 0109199416081991/mmv2-animal-therapy:0.3.0-SNAPSHOT
+    restart: unless-stopped
+    ports:
+      - "6000:6000"
+    depends_on:
+      - therapy-db
+      - naming-server
+      - rabbitmq
+    networks:
+      - pet-corner
+    environment:
+      EUREKA_URL: http://naming-server:8761/eureka
+      DB_PORT : 5432
+      POSTGRES_PASSWORD : password
+      POSTGRES_USER : admin
+      DB_HOST : therapy-db
+      DB_NAME : therapy-db
+      ZIPKIN_URL: http://tracing-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING_RABBITMQ_ADDRESSES: rabbitmq:5672
+
+
   profile-service:
     container_name: profile-service
-    image: 0109199416081991/mmv2-profile-service:0.3.0-SNAPSHOT
+    image: 0109199416081991/mmv2-profile-service:0.3.1-SNAPSHOT
     restart: unless-stopped
     ports:
       - "9000:9000"
@@ -133,7 +210,7 @@ services:
 
   api-gateway:
     container_name: api-gateway
-    image: 0109199416081991/mmv2-api-gateway:0.3.0-SNAPSHOT
+    image: 0109199416081991/mmv2-api-gateway:0.3.1-SNAPSHOT
     restart: unless-stopped
     ports:
       - "8765:8765"
@@ -144,46 +221,6 @@ services:
     environment:
       EUREKA_URL: http://naming-server:8761/eureka
       ZIPKIN_URL: http://tracing-server:9411/
-
-#  spring.rabbitmq.addresses = localhost:5672
-
-#  therapy-service:
-#    container_name: therapy-service
-#    image:
-#    restart: unless-stopped
-#    ports:
-#      - "8100:8100"
-#    depends_on:
-#      - therapy-db
-#      - naming-server
-#    networks:
-#      - pet-corner
-#
-#
-#  sitting-service:
-#    container_name: sitting-service
-#    image:
-#    restart: unless-stopped
-#    ports:
-#      - "8200:8200"
-#    depends_on:
-#      - sitting-db
-#      - naming-server
-#    networks:
-#      - pet-corner
-#
-#
-#  training-service:
-#    container_name: training-service
-#    image:
-#    restart: unless-stopped
-#    ports:
-#      - "8300:8300"
-#    depends_on:
-#      - training-db
-#      - naming-server
-#    networks:
-#      - pet-corner
 
   tracing-server:
     container_name: tracing-server

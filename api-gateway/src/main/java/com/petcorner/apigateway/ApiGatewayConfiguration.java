@@ -15,6 +15,12 @@ public class ApiGatewayConfiguration {
                         .uri("lb://adopt-service"))
                 .route(p -> p.path("/profile/v2/**")
                         .uri("lb://profile-service"))
+                .route(p -> p.path("/therapy/v2/**")
+                        .uri("lb://therapy-service"))
+                .route(p -> p.path("/sitting/v2/**")
+                        .uri("lb://sitting-service"))
+                .route(p -> p.path("/trainer/v2/**")
+                        .uri("lb://training-service"))
                 .build();
     }
 
