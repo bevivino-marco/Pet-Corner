@@ -20,7 +20,6 @@ import java.util.*;
 
 import java.util.*;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/therapy/v2")
 public class AnimalTherapyController {

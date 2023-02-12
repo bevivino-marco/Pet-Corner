@@ -1,24 +1,42 @@
 cd .\eureka\
-kubectl apply deployment.yml
+kubectl apply -f deployment.yml
 cd ..
 cd .\rabbitmq\
-kubectl apply rabbit-configmap.yaml
-kubectl apply rabbit-rbac.yaml
-kubectl apply rabbit-secret.yaml
-kubectl apply rabbit-statefulset.yaml
+kubectl apply -n rabbits -f rabbit-configmap.yaml
+kubectl apply -n rabbits -f rabbit-rbac.yaml
+kubectl apply -n rabbits -f rabbit-secret.yaml
+kubectl apply -n rabbits -f rabbit-statefulset.yaml
 cd ..
 cd API-Gateway
-kubectl apply deployment.yml
+kubectl apply -f deployment.yml
 cd ..
 cd .\adopt\
-kubectl apply postgres-configmap.yaml
-kubectl apply postgres-credentials.yaml
-kubectl apply postgres-deployment.yaml
-kubectl apply deployment.yaml
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
 cd ..
 cd .\profile\
-kubectl apply postgres-configmap.yaml
-kubectl apply postgres-credentials.yaml
-kubectl apply postgres-deployment.yaml
-kubectl apply deployment.yaml
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
 cd ..
+cd .\sitting\
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
+cd ..
+cd .\therapy\
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
+cd ..
+cd .\training\
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
+kubectl port-forward api-gateway-0 8765:8765
