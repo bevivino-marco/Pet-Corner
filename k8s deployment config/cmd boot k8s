@@ -1,0 +1,24 @@
+cd .\eureka\
+kubectl apply deployment.yml
+cd ..
+cd .\rabbitmq\
+kubectl apply rabbit-configmap.yaml
+kubectl apply rabbit-rbac.yaml
+kubectl apply rabbit-secret.yaml
+kubectl apply rabbit-statefulset.yaml
+cd ..
+cd API-Gateway
+kubectl apply deployment.yml
+cd ..
+cd .\adopt\
+kubectl apply postgres-configmap.yaml
+kubectl apply postgres-credentials.yaml
+kubectl apply postgres-deployment.yaml
+kubectl apply deployment.yaml
+cd ..
+cd .\profile\
+kubectl apply postgres-configmap.yaml
+kubectl apply postgres-credentials.yaml
+kubectl apply postgres-deployment.yaml
+kubectl apply deployment.yaml
+cd ..
