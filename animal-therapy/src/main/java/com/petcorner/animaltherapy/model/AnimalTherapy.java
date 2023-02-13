@@ -2,6 +2,7 @@ package com.petcorner.animaltherapy.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class AnimalTherapy {
@@ -24,6 +25,8 @@ public class AnimalTherapy {
     private String type;
     private String description;
     private String provenance;
+    @Column(unique = true, nullable = false)
+    private String microchip;
 
 
     @Transient
@@ -32,7 +35,7 @@ public class AnimalTherapy {
     public AnimalTherapy() {
     }
 
-    public AnimalTherapy(String name, int age, String owner, int size, String provenance, String type, String description) {
+    public AnimalTherapy(String name, int age, String owner, int size, String provenance, String type, String description,String microchip) {
 
         this.name = name;
         this.age = age;
@@ -41,6 +44,15 @@ public class AnimalTherapy {
         this.type=type;
         this.description=description;
         this.provenance=provenance;
+        this.microchip=microchip;
+    }
+
+    public String getMicrochip() {
+        return microchip;
+    }
+
+    public void setMicrochip(String microchip) {
+        this.microchip = microchip;
     }
 
     public String getType() {

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: profile
-          image: 0109199416081991/mmv2-profile-service:0.3.1-SNAPSHOT
+          image: 0109199416081991/mmv2-profile-service:0.3.2-SNAPSHOT
           ports:
             - containerPort: 9000
           env:

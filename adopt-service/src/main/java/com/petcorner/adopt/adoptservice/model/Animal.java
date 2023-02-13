@@ -2,9 +2,10 @@ package com.petcorner.adopt.adoptservice.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Animal {
+public class Animal implements Serializable {
     @Id
     @SequenceGenerator(
             name = "animals_id_sequence",
@@ -24,6 +25,9 @@ public class Animal {
     private String description;
     private String owner;
     private String provenance;
+    @Column(unique = true, nullable = false)
+    private String microchip;
+
 
     @Transient
     private String animalSize = "";
@@ -31,15 +35,24 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(String name, int age, int size, String owner, String provenance, String type, String description) {
+    public Animal(String name, int age, String owner, int size, String provenance, String type, String description,String microchip) {
 
         this.name = name;
         this.age = age;
+        this.owner = owner;
         this.size = size;
         this.type=type;
         this.description=description;
-        this.owner = owner;
         this.provenance=provenance;
+        this.microchip=microchip;
+    }
+
+    public String getMicrochip() {
+        return microchip;
+    }
+
+    public void setMicrochip(String microchip) {
+        this.microchip = microchip;
     }
 
     public String getType() {

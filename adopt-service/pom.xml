@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.petcorner.adopt</groupId>
 	<artifactId>adopt-service</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.3.2-SNAPSHOT</version>
 	<name>adopt-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

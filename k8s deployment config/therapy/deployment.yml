@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: therapy
-          image: 0109199416081991/mmv2-animal-therapy:0.3.1-SNAPSHOT
+          image: 0109199416081991/mmv2-animal-therapy:0.3.2-SNAPSHOT
           ports:
             - containerPort: 6000
           env:
