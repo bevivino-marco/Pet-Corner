@@ -40,3 +40,5 @@ kubectl apply -f postgres-credentials.yml
 kubectl apply -f postgres-deployment.yml
 kubectl apply -f deployment.yml
 kubectl port-forward api-gateway-0 8765:8765
+kubectl port-forward profile-0 9000:9000
+kubectl port-forward eureka-0 8761:8761

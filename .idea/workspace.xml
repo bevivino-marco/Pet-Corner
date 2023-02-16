@@ -3,16 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="94cdbc32-7798-4da5-adfb-0a6087c67ffb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/src/main/java/com/petcorner/adopt/adoptservice/model/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/src/main/java/com/petcorner/adopt/adoptservice/model/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/controller/AdoptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/controller/AdoptController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/model/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/model/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-therapy/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/animal-therapy/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-therapy/src/main/java/com/petcorner/animaltherapy/model/AnimalTherapy.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-therapy/src/main/java/com/petcorner/animaltherapy/model/AnimalTherapy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s deployment config/API-Gateway/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/API-Gateway/deployment.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s deployment config/adopt/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/adopt/deployment.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/k8s deployment config/cmd boot k8s" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/cmd boot k8s" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/k8s deployment config/profile/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/profile/deployment.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/k8s deployment config/sitting/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/sitting/deployment.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s deployment config/therapy/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/therapy/deployment.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/k8s deployment config/training/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/training/deployment.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
