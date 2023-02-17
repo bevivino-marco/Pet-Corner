@@ -80,7 +80,7 @@ services:
 
   adopt-service:
     container_name: adopt-service
-    image: 0109199416081991/mmv2-adopt-service:0.3.2-SNAPSHOT
+    image: 0109199416081991/mmv2-adopt-service:0.3.3-SNAPSHOT
     restart: unless-stopped
     ports:
       - "8000:8000"
@@ -106,7 +106,7 @@ services:
 
   sitting-service:
     container_name: sitting-service
-    image: 0109199416081991/mmv2-animal-sitting:0.3.1-SNAPSHOT
+    image: 0109199416081991/mmv2-animal-sitting:0.3.3-SNAPSHOT
     restart: unless-stopped
     ports:
       - "7000:7000"
@@ -131,7 +131,7 @@ services:
 
   training-service:
     container_name: training-service
-    image: 0109199416081991/mmv2-animal-trainer:0.3.1-SNAPSHOT
+    image: 0109199416081991/mmv2-animal-trainer:0.3.3-SNAPSHOT
     restart: unless-stopped
     ports:
       - "6500:6500"
@@ -157,7 +157,7 @@ services:
 
   therapy-service:
     container_name: therapy-service
-    image: 0109199416081991/mmv2-animal-therapy:0.3.2-SNAPSHOT
+    image: 0109199416081991/mmv2-animal-therapy:0.3.3-SNAPSHOT
     restart: unless-stopped
     ports:
       - "6000:6000"

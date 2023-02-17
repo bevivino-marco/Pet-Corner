@@ -28,8 +28,10 @@ public class Trainer {
         private String animalsAllowed;
         private int sizeAllowed;
         private String serviceOffered;
+        @Column(unique = true, nullable = false)
+        private String email;
 
-        public Trainer(String name, String surname, int age, String locality, String personalDescription, String animalsAllowed, int sizeAllowed, String serviceOffered) {
+        public Trainer(String name, String surname, int age, String locality, String personalDescription, String animalsAllowed, int sizeAllowed, String serviceOffered,String email) {
             this.name = name;
             this.surname = surname;
             this.age = age;
@@ -38,9 +40,18 @@ public class Trainer {
             this.animalsAllowed = animalsAllowed;
             this.sizeAllowed = sizeAllowed;
             this.serviceOffered = serviceOffered;
+            this.email=email;
         }
 
-        public String getName() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
             return name;
         }
 

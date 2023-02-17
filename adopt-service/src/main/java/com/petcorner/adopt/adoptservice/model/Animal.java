@@ -27,6 +27,7 @@ public class Animal implements Serializable {
     private String provenance;
     @Column(unique = true, nullable = false)
     private String microchip;
+    private String sex;
 
 
     @Transient
@@ -35,7 +36,7 @@ public class Animal implements Serializable {
     public Animal() {
     }
 
-    public Animal(String name, int age, String owner, int size, String provenance, String type, String description,String microchip) {
+    public Animal(String name, int age, String owner, int size, String provenance, String type, String description,String microchip, String sex) {
 
         this.name = name;
         this.age = age;
@@ -45,6 +46,15 @@ public class Animal implements Serializable {
         this.description=description;
         this.provenance=provenance;
         this.microchip=microchip;
+        this.sex=sex;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getMicrochip() {
