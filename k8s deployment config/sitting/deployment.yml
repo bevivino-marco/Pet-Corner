@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: sitting
-          image: 0109199416081991/mmv2-animal-sitting:0.3.1-SNAPSHOT
+          image: 0109199416081991/mmv2-animal-sitting:0.3.3-SNAPSHOT
           ports:
             - containerPort: 7000
           env:

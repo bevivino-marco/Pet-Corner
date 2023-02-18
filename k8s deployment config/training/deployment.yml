@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: training
-          image: 0109199416081991/mmv2-animal-trainer:0.3.1-SNAPSHOT
+          image: 0109199416081991/mmv2-animal-trainer:0.3.3-SNAPSHOT
           ports:
             - containerPort: 6500
           env:

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: adopt
-          image: 0109199416081991/mmv2-adopt-service:0.3.2-SNAPSHOT
+          image: 0109199416081991/mmv2-adopt-service:0.3.3-SNAPSHOT
           ports:
             - containerPort: 8000
           env:
