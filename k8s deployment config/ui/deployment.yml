@@ -1,0 +1,39 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: petcornerui
+  labels:
+    name: petcornerui
+spec:
+  ports:
+    - nodePort: 30300
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: petcornerui
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: petcornerui
+spec:
+  serviceName: "petcornerui"
+  selector:
+    matchLabels:
+      app: petcornerui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: petcornerui
+    spec:
+      containers:
+        - name: petcornerui
+          image: 0109199416081991/petcornerui:0.0.1-RELEASE
+          ports:
+            - containerPort: 3000
+#  kubectl port-forward eureka-0 8761:8761
+
