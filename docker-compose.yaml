@@ -262,7 +262,7 @@ services:
 
   petcornerui:
     container_name: petcornerui
-    image: /0109199416081991/petcornerui:0.0.1-RELEASE
+    image: /0109199416081991/petcornerui:0.1.0-RELEASE
     restart: unless-stopped
     ports:
       - "3000:3000"

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: petcornerui
-          image: 0109199416081991/petcornerui:0.0.1-RELEASE
+          image: 0109199416081991/petcornerui:0.1.0-RELEASE
           ports:
             - containerPort: 3000
 #  kubectl port-forward eureka-0 8761:8761
