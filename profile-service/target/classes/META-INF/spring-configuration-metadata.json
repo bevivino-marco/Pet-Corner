@@ -1,0 +1,40 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.petcorner.profileservice.config.AppProperties",
+      "name": "app",
+      "type": "com.petcorner.profileservice.config.AppProperties"
+    },
+    {
+      "sourceType": "com.petcorner.profileservice.config.AppProperties",
+      "name": "app.auth",
+      "sourceMethod": "getAuth()",
+      "type": "com.petcorner.profileservice.config.AppProperties$Auth"
+    },
+    {
+      "sourceType": "com.petcorner.profileservice.config.AppProperties",
+      "name": "app.oauth2",
+      "sourceMethod": "getOauth2()",
+      "type": "com.petcorner.profileservice.config.AppProperties$OAuth2"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.petcorner.profileservice.config.AppProperties$Auth",
+      "defaultValue": 0,
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.petcorner.profileservice.config.AppProperties$Auth",
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.petcorner.profileservice.config.AppProperties$OAuth2",
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>"
+    }
+  ]
+}

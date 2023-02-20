@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.petcorner.adopt.adoptservice.AdoptServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.324 s <<< FAILURE! - in com.petcorner.adopt.adoptservice.AdoptServiceApplicationTests
+contextLoads  Time elapsed: 0.006 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Composite-id class must implement Serializable: com.petcorner.adopt.adoptservice.model.Animal
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Composite-id class must implement Serializable: com.petcorner.adopt.adoptservice.model.Animal
+Caused by: org.hibernate.MappingException: Composite-id class must implement Serializable: com.petcorner.adopt.adoptservice.model.Animal
+

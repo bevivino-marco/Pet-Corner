@@ -1,0 +1,8 @@
+com\petcorner\adopt\adoptservice\model\AdoptModel.class
+com\petcorner\adopt\adoptservice\model\Animal.class
+com\petcorner\adopt\adoptservice\proxy\ProfileServiceProxy.class
+com\petcorner\adopt\adoptservice\queue\MQConfig.class
+com\petcorner\adopt\adoptservice\repository\AdoptRepository.class
+com\petcorner\adopt\adoptservice\AdoptServiceApplication.class
+com\petcorner\adopt\adoptservice\queue\CustomMessage.class
+com\petcorner\adopt\adoptservice\controller\AdoptController.class

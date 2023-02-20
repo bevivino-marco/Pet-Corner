@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="068c9f71-2f45-4e1c-be20-708a002e9f86" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/petcorner/adopt/adoptservice/model/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/petcorner/adopt/adoptservice/model/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-sitting/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-sitting/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/AnimalSittingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/AnimalSittingApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/model/Sitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/model/Sitter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-therapy/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-therapy/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-therapy/src/main/java/com/petcorner/animaltherapy/model/AnimalTherapy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-therapy/src/main/java/com/petcorner/animaltherapy/model/AnimalTherapy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-trainer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-trainer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-trainer/src/main/java/com/petcorner/animaltrainer/AnimalTrainerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-trainer/src/main/java/com/petcorner/animaltrainer/AnimalTrainerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-trainer/src/main/java/com/petcorner/animaltrainer/model/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-trainer/src/main/java/com/petcorner/animaltrainer/model/Trainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Kk7CWcE69blOZ5RkxT9HGeplt3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/VG User/Desktop/UNI/TAASS/PROGETTO-BE/adopt-service/src/main/java/com/petcorner/adopt/adoptservice&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\adopt-service\src\main\java\com\petcorner\adopt\adoptservice" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.adopt-service [spring-boot:build-image...]">
+    <configuration name="AdoptServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.petcorner.adopt.adoptservice.AdoptServiceApplication" />
+      <module name="adopt-service" />
+      <option name="VM_PARAMETERS" value="-DDB_HOST=localhost -DDB_NAME=adopt-db -DDB_PORT=5433 -DPOSTGRES_USER=admin -DPOSTGRES_PASSWORD=password -DZIPKIN_URL=http://localhost:9411/ -DEUREKA_URL=http://localhost:8761/eureka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.petcorner.adopt.adoptservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdoptServiceApplication1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.petcorner.adopt.adoptservice.AdoptServiceApplication" />
+      <module name="adopt-service" />
+      <option name="VM_PARAMETERS" value="-Dserver.port=8001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.petcorner.adopt.adoptservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="adopt-service [spring-boot:build-image...]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="spring-boot:build-image" />
+                <option value="-DskipTests=true" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="../docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="sourceFilePath" value="../docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="../docker-compose.yaml.adopt-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="services">
+            <list>
+              <option value="adopt-service" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="../docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="../docker-compose.yaml.sitting-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="sitting-service" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="../docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="../docker-compose.yaml.training-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="training-service" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="../docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.AdoptServiceApplication1" />
+      <item itemvalue="Application.AdoptServiceApplication" />
+      <item itemvalue="Docker.../docker-compose.yaml: Compose Deployment" />
+      <item itemvalue="Docker.../docker-compose.yaml.adopt-service: Compose Deployment" />
+      <item itemvalue="Docker.../docker-compose.yaml.sitting-service: Compose Deployment" />
+      <item itemvalue="Docker.../docker-compose.yaml.training-service: Compose Deployment" />
+      <item itemvalue="Maven.adopt-service [spring-boot:build-image...]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AdoptServiceApplication" />
+        <item itemvalue="Docker.../docker-compose.yaml.training-service: Compose Deployment" />
+        <item itemvalue="Docker.../docker-compose.yaml.sitting-service: Compose Deployment" />
+        <item itemvalue="Docker.../docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.../docker-compose.yaml.adopt-service: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="068c9f71-2f45-4e1c-be20-708a002e9f86" name="Changes" comment="" />
+      <created>1674506599570</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674506599570</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

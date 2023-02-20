@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dac3bf42-4460-4d2e-bf4d-76a89773729c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-trainer/src/main/java/com/petcorner/animaltrainer/AnimalTrainerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-trainer/src/main/java/com/petcorner/animaltrainer/AnimalTrainerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../animal-trainer/src/main/java/com/petcorner/animaltrainer/model/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../animal-trainer/src/main/java/com/petcorner/animaltrainer/model/Trainer.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Kk6VasXqJd9zGnEAwIm5HzFD6h" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/VG User/Desktop/UNI/TAASS/PROGETTO-BE/profile-service/src/main/java/com/petcorner/profileservice&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice" />
+      <recent name="C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\controller" />
+      <recent name="C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\resources" />
+      <recent name="C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\security\oauth2" />
+      <recent name="C:\Users\VG User\Desktop\UNI\TAASS\PROGETTO-BE\profile-service\src\main\java\com\petcorner\profileservice\security" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.petcorner.profileservice.config" />
+      <recent name="com.petcorner.profileservice.security" />
+      <recent name="com.petcorner.profileservice.util" />
+      <recent name="com.petcorner.profileservice.model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.profile-service [spring-boot:build-image...]">
+    <configuration name="ProfileServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.petcorner.profileservice.ProfileServiceApplication" />
+      <module name="profile-service" />
+      <option name="VM_PARAMETERS" value="-DDB_HOST=localhost -DDB_NAME=profile-db -DDB_PORT=5432 -DPOSTGRES_USER=admin -DPOSTGRES_PASSWORD=password -DZIPKIN_URL=http://localhost:9411/ -DEUREKA_URL=http://localhost:8761/eureka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.petcorner.profileservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfileServiceApplication8081" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.petcorner.profileservice.ProfileServiceApplication" />
+      <module name="profile-service" />
+      <option name="VM_PARAMETERS" value="-Dserver.port=8081" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.petcorner.profileservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="profile-service [spring-boot:build-image...]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="spring-boot:build-image" />
+                <option value="-DskipTests=true" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="../docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="../docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="../docker-compose.yaml.adopt-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="adopt-service" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="../docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="../docker-compose.yaml.profile-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="profile-service" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="../docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="../docker-compose.yaml.tracing-server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="tracing-server" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="../docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.ProfileServiceApplication8081" />
+      <item itemvalue="Application.ProfileServiceApplication" />
+      <item itemvalue="Docker.../docker-compose.yaml: Compose Deployment" />
+      <item itemvalue="Docker.../docker-compose.yaml.adopt-service: Compose Deployment" />
+      <item itemvalue="Docker.../docker-compose.yaml.profile-service: Compose Deployment" />
+      <item itemvalue="Docker.../docker-compose.yaml.tracing-server: Compose Deployment" />
+      <item itemvalue="Maven.profile-service [spring-boot:build-image...]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ProfileServiceApplication" />
+        <item itemvalue="Docker.../docker-compose.yaml.profile-service: Compose Deployment" />
+        <item itemvalue="Docker.../docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.../docker-compose.yaml.adopt-service: Compose Deployment" />
+        <item itemvalue="Docker.../docker-compose.yaml.tracing-server: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dac3bf42-4460-4d2e-bf4d-76a89773729c" name="Changes" comment="" />
+      <created>1674506257308</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674506257308</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
