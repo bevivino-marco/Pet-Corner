@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: adopt-conf
+data:
+  host: postgres
+  name: adopt-db

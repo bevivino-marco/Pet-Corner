@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: therapy-conf
+data:
+  host: postgres
+  name: therapy-db

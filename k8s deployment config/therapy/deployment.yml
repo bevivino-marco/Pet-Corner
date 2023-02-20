@@ -1,0 +1,70 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: therapy
+  labels:
+    name: therapy
+spec:
+  ports:
+    - nodePort: 30600
+      port: 6000
+      targetPort: 6000
+      protocol: TCP
+  selector:
+    app: therapy
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: therapy
+spec:
+  serviceName: "therapy"
+  selector:
+    matchLabels:
+      app: therapy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: therapy
+    spec:
+      containers:
+        - name: therapy
+          image: 0109199416081991/mmv2-animal-therapy:0.3.3-SNAPSHOT
+          ports:
+            - containerPort: 6000
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: therapy-conf
+                  key: host
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: therapy-conf
+                  key: name
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: therapy-db-credentials
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: therapy-db-credentials
+                  key: postgres_password
+            - name: DB_PORT
+              value: "5432"
+            - name: SPRING_RABBITMQ_ADDRESSES
+              value: "amqp://guest:guest@rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
+            - name: SPRING_RABBITMQ_HOST
+              value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local"
+            - name: RABBIT_URI
+              value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
+            - name: EUREKA_URL
+              value: "http://eureka-0.eureka.default.svc.cluster.local:8761/eureka"
+#  kubectl port-forward eureka-0 8761:8761
+

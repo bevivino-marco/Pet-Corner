@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: profile-conf
+data:
+  host: postgres
+  name: profile-db

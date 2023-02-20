@@ -1,0 +1,70 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sitting
+  labels:
+    name: sitting
+spec:
+  ports:
+    - nodePort: 30700
+      port: 7000
+      targetPort: 7000
+      protocol: TCP
+  selector:
+    app: sitting
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sitting
+spec:
+  serviceName: "sitting"
+  selector:
+    matchLabels:
+      app: sitting
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sitting
+    spec:
+      containers:
+        - name: sitting
+          image: 0109199416081991/mmv2-animal-sitting:0.3.3-SNAPSHOT
+          ports:
+            - containerPort: 7000
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: sitting-conf
+                  key: host
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: sitting-conf
+                  key: name
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sitting-db-credentials
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sitting-db-credentials
+                  key: postgres_password
+            - name: DB_PORT
+              value: "5432"
+            - name: SPRING_RABBITMQ_ADDRESSES
+              value: "amqp://guest:guest@rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
+            - name: SPRING_RABBITMQ_HOST
+              value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local"
+            - name: RABBIT_URI
+              value: "rabbitmq-0.rabbitmq.rabbits.svc.cluster.local:5672"
+            - name: EUREKA_URL
+              value: "http://eureka-0.eureka.default.svc.cluster.local:8761/eureka"
+#  kubectl port-forward eureka-0 8761:8761
+

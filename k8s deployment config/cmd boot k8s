@@ -1,0 +1,51 @@
+cd .\eureka\
+kubectl apply -f deployment.yml
+cd ..
+cd .\rabbitmq\
+kubectl create ns rabbits
+kubectl apply -n rabbits -f rabbit-configmap.yaml
+kubectl apply -n rabbits -f rabbit-rbac.yaml
+kubectl apply -n rabbits -f rabbit-secret.yaml
+kubectl apply -n rabbits -f rabbit-statefulset.yaml
+cd ..
+cd API-Gateway
+kubectl apply -f deployment.yml
+cd ..
+cd .\adopt\
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
+cd ..
+cd .\sitting\
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
+cd ..
+cd .\therapy\
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
+cd ..
+cd .\training\
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
+cd..
+cd .\profile\
+kubectl apply -f postgres-configmap.yml
+kubectl apply -f postgres-credentials.yml
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f deployment.yml
+cd ..
+cd .\ui\
+kubectl apply -f deployment.yml
+cd ..
+kubectl port-forward api-gateway-0 8765:8765
+kubectl port-forward profile-0 9000:9000
+kubectl port-forward eureka-0 8761:8761
+kubectl port-forward petcornerui-0 3000:3000
+kubectl -n rabbits port-forward rabbitmq-0 8080:15672
