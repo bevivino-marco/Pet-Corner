@@ -142,7 +142,6 @@ public class AnimalTrainerController {
 
     }
 
-    ///////////////v2
 
     @GetMapping("/trainers/page/{page}")
     public List<Trainer> getTrainersForPage(@PathVariable int page){
@@ -246,17 +245,6 @@ public class AnimalTrainerController {
 
     }
 
-    //fare metodo per aggiunta Sitter postMapping
-    // @PostMapping("/trainers/add")
-    // public Trainer addTrainer(@RequestBody Trainer trainer){
-    //     try {
-    //         repository.save(trainer);
-    //     } catch (Exception e){
-    //         System.out.println("Error:"+ e.getMessage());
-    //         return null;
-    //     }
-    //     return trainer;
-    // }
 
     @RabbitListener(queues = MQConfig.QUEUE)
     public void listener(CustomMessage message) throws IOException {

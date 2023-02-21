@@ -31,8 +31,5 @@ public class User {
     private String country;
     private String city;
     private String address;
-//    @ElementCollection
-//    @CollectionTable(name = "animals_id")
-//    private Collection<String> animals = new ArrayList<>();
 
 }

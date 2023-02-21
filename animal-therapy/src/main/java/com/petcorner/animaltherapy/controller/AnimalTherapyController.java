@@ -148,7 +148,6 @@ public class AnimalTherapyController {
 
     }
 
-    ///////////////v2
 
     @GetMapping("/animalsTherapy/page/{page}")
     public List<AnimalTherapy> getAnimalsTherapyForPage(@PathVariable int page){
@@ -264,16 +263,6 @@ public class AnimalTherapyController {
     }
 
 
-    // @PostMapping("/animalsTherapy/add")
-    //  public AnimalTherapy addAnimalTherapy(@RequestBody AnimalTherapy animalTherapy){
-    //    try {
-    //        repository.save(animalTherapy);
-    //    } catch (Exception e){
-    //        System.out.println("Error:"+ e.getMessage());
-    //        return null;
-    //    }
-    //    return animalTherapy;
-    //}
 
     @RabbitListener(queues = MQConfig.QUEUE)
     public void listener(CustomMessage message) throws IOException {

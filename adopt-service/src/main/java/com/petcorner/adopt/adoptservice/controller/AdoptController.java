@@ -157,7 +157,6 @@ public class AdoptController {
 
     }
 
-    ///////////////v2
 
     @GetMapping("/animals/page/{page}")
     public List<Animal> getAnimalsForPage(@PathVariable int page){
