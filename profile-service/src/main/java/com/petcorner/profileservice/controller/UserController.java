@@ -120,25 +120,6 @@ public class UserController {
         }
     }
 
-//    @PostMapping("/animal/addtouser")
-//    public String addAnimalToUser(@RequestBody String request) throws JSONException {
-//        log.info(request);
-//        JSONObject jsonObject = new JSONObject(request);
-//        log.info(jsonObject.toString());
-//
-////        log.info(requestEntity.getBody().toString());
-////        return requestEntity.getBody().toString();
-////        HashMap<String, String> uriVariables = new HashMap<>();
-////        uriVariables.put("from",from);
-////        uriVariables.put("to",to);
-////
-//        ResponseEntity<JSONObject> responseEntity = new RestTemplate().getForEntity
-//                ("http://localhost:8000/api/v1/animals/add",
-//                        JSONObject.class, jsonObject);
-//
-//        return jsonObject.toString();
-//
-//    }
 
 
     @GetMapping("/user-info/{username}")
@@ -147,20 +128,6 @@ public class UserController {
     }
 
 
-//    @GetMapping("/user-animals/{username}")
-//    public ResponseEntity<List<JsonObject>> getAnimalsByUser(@PathVariable String username) {
-//        CustomMessage message = new CustomMessage();
-//        message.setData(username);
-//        message.setMessage("Get animals for user: "+username);
-//        message.setMessageId(UUID.randomUUID().toString());
-//        message.setMessageDate(new Date());
-//        template.convertAndSend(MQConfig.EXCHANGE,
-//                MQConfig.ROUTING_KEY, message);
-//        System.out.println(message.getData());
-//
-//
-//        return ResponseEntity.ok().body(userService.getUser(username));
-//    }
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
     public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
@@ -323,12 +290,6 @@ public class UserController {
         return "Animal sitter Sent";
     }
 
-
-//    @RabbitListener(queues = MQConfig.QUEUE)
-//    public void listener(CustomMessage message) {
-//        System.out.println(message);
-//
-//    }
 
 
 

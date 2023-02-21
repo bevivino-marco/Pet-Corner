@@ -140,7 +140,6 @@ public class AnimalSittingController {
 
     }
 
-    ///////////////v2
 
     @GetMapping("/sitters/page/{page}")
     public List<Sitter> getSittersForPage(@PathVariable int page){
@@ -242,16 +241,6 @@ public class AnimalSittingController {
 
     }
 
-   // @PostMapping("/sitters/add")
-   // public Sitter addSitter(@RequestBody Sitter sitter){
-   //     try {
-   //         repository.save(sitter);
-   //     } catch (Exception e){
-   //         System.out.println("Error:"+ e.getMessage());
-   //         return null;
-   //     }
-   //     return sitter;
-   // }
 
     @RabbitListener(queues = MQConfig.QUEUE)
     public void listener(CustomMessage message) throws IOException {
