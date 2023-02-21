@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94cdbc32-7798-4da5-adfb-0a6087c67ffb" name="Changes" comment="">
+    <list default="true" id="94cdbc32-7798-4da5-adfb-0a6087c67ffb" name="Changes" comment="Tutto funzionante su k8s">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s deployment config/cmd boot k8s" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/cmd boot k8s" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s deployment config/ui/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s deployment config/ui/deployment.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +13,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="hotfix" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,6 +59,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -85,5 +84,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Tutto funzionante su k8s" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tutto funzionante su k8s" />
   </component>
 </project>
