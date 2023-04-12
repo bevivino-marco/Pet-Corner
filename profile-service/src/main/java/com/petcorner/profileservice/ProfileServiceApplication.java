@@ -5,6 +5,7 @@ import com.petcorner.profileservice.model.AuthProvider;
 import com.petcorner.profileservice.model.Role;
 import com.petcorner.profileservice.model.User;
 import com.petcorner.profileservice.service.UserService;
+import com.petcorner.profileservice.upload.FilesStorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 
 @SpringBootApplication
@@ -25,6 +27,8 @@ public class ProfileServiceApplication {
 		SpringApplication.run(ProfileServiceApplication.class, args);
 	}
 
+	@Resource
+	FilesStorageService storageService;
 
 	@Bean
 	PasswordEncoder passwordEncoder(){
@@ -59,9 +63,12 @@ public class ProfileServiceApplication {
 			userService.addRoleToUser("marco@gmail.com", "ROLE_SITTER");
 			userService.addRoleToUser("asya@gmail.com", "ROLE_BUSINESS");
 			userService.addRoleToUser("ale@gmail.com", "ROLE_SITTER");
-
+			storageService.init();
 		};
 	}
+
+
+
 
 
 }
