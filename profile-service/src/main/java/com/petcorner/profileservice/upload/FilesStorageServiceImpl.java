@@ -6,8 +6,9 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.core.io.Resource;
@@ -31,9 +32,9 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     }
 
     @Override
-    public void save(MultipartFile file, String name) {
+    public void save(MultipartFile file, String id, String type_selected) {
 
-        String filename = name+"---" +LocalTime.now().toString().replace(".","").replace(":","")+file.getOriginalFilename().substring(file.getOriginalFilename().indexOf("."));
+        String filename = id+"---"+type_selected+"---" +LocalTime.now().toString().replace(".","").replace(":","")+file.getOriginalFilename().substring(file.getOriginalFilename().indexOf("."));
 
         try {
             Files.copy(file.getInputStream(), this.root.resolve(filename));
@@ -61,6 +62,20 @@ public class FilesStorageServiceImpl implements FilesStorageService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
+
+    @Override
+    public Stream<Path> loadFilesFor(String id, String type) {
+        String filename= id+"---"+type;
+        try {
+            return Files.walk(this.root, 1).filter(path ->
+                    path.getFileName().toString().startsWith(filename))
+                    .map(this.root::relativize);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not load the files!");
+        }
+    }
+
+
 
     @Override
     public void delete(String filename) throws IOException {
