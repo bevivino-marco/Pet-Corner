@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94cdbc32-7798-4da5-adfb-0a6087c67ffb" name="Changes" comment="Tutto funzionante su k8s &quot;/&quot; tolto immagine aggiornata k8s">
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/upload/FileInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/upload/FileUploadExceptionAdvice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/upload/FilesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/upload/FilesStorageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/upload/FilesStorageServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/upload/ResponseMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/uploads/24134224---155410368607200.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/uploads/24134224---162111390576200.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/ProfileServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/ProfileServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/ProfileServiceApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/ProfileServiceApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/controller/RoleToUserForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/controller/RoleToUserForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/filter/CustomAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/filter/CustomAuthenticationFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/security/SecurityConfig.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

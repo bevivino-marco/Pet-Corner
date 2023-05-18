@@ -7,7 +7,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.JsonObject;
 import com.petcorner.profileservice.exception.ResourceNotFoundException;
 import com.petcorner.profileservice.feignproxy.AdoptServiceProxy;
 import com.petcorner.profileservice.model.Role;
@@ -21,19 +20,16 @@ import com.petcorner.profileservice.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +38,6 @@ import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.stream;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -291,6 +286,40 @@ public class UserController {
     }
 
 
+    @PostMapping("/animal/add-animal-adopt-queue")
+    public String addAnimalADopt(
+            @RequestParam("file") MultipartFile file,
+          @RequestParam("age") String age,@RequestParam("description") String descr,
+          @RequestParam("owner") String owner,@RequestParam("microchip") String chip,
+          @RequestParam("name") String name,@RequestParam("sex") String sex,
+          @RequestParam("size") String size, @RequestParam("provenance") String prov,
+            @RequestParam("type") String type
+        ) throws IOException, JSONException {
+
+        String image = Base64.getEncoder().encodeToString(file.getBytes());
+        JSONObject animal = new JSONObject();
+        animal.put("image", image);
+        animal.put("age",age);
+        animal.put("owner",owner);
+        animal.put("size",size);
+        animal.put("type",type);
+        animal.put("description",descr);
+        animal.put("microchip", chip);
+        animal.put("sex", sex);
+        animal.put("provenance", prov);
+        animal.put("name", name);
+
+        CustomMessage message = new CustomMessage();
+        message.setData(animal.toString());
+        message.setMessage("Create animal");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend(MQConfig.EXCHANGE,
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal Sent";
+    }
 
 
 }

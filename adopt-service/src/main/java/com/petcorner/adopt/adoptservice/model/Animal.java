@@ -3,6 +3,7 @@ package com.petcorner.adopt.adoptservice.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Base64;
 
 @Entity
 public class Animal implements Serializable {
@@ -28,6 +29,8 @@ public class Animal implements Serializable {
     @Column(unique = true, nullable = false)
     private String microchip;
     private String sex;
+    @Column(columnDefinition = "TEXT")
+    private String image;
 
 
     @Transient
@@ -49,6 +52,13 @@ public class Animal implements Serializable {
         this.sex=sex;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
     public String getSex() {
         return sex;
     }
