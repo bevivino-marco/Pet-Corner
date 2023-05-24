@@ -31,5 +31,7 @@ public class User {
     private String country;
     private String city;
     private String address;
+    @Column(columnDefinition = "TEXT")
+    private String image;
 
 }

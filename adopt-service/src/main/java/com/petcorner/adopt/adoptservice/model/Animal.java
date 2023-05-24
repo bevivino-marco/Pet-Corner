@@ -39,7 +39,7 @@ public class Animal implements Serializable {
     public Animal() {
     }
 
-    public Animal(String name, int age, String owner, int size, String provenance, String type, String description,String microchip, String sex) {
+    public Animal(String name, int age, String owner, int size, String provenance, String type, String description,String microchip, String sex, String image) {
 
         this.name = name;
         this.age = age;
@@ -50,6 +50,7 @@ public class Animal implements Serializable {
         this.provenance=provenance;
         this.microchip=microchip;
         this.sex=sex;
+        this.image=image;
     }
 
     public String getImage() {

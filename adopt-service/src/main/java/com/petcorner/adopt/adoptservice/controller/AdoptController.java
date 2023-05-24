@@ -290,13 +290,26 @@ public class AdoptController {
                 System.out.println(message.getData().toString());
                 Animal animalToDelete = new ObjectMapper().readValue(animalStringToDelete, Animal.class);
 
-                Long id = animalToDelete.getId();
+                String owner = animalToDelete.getOwner();
+                String microchip = animalToDelete.getMicrochip();
                 System.out.println(animalToDelete);
-                try {
-                    repository.deleteById(id);
-                } catch (Exception e) {
-                    System.out.println("Error:" + e.getMessage());
-                    return;
+
+                if (owner!=null){
+                    try {
+                        repository.deleteAllByOwner(owner);
+                    } catch (Exception e) {
+                        System.out.println("Error:" + e.getMessage());
+                        return;
+                    }
+
+                }else if(microchip!=null){
+                    try {
+                        repository.deleteByMicrochip(microchip);
+                    } catch (Exception e) {
+                        System.out.println("Error:" + e.getMessage());
+                        return;
+                    }
+
                 }
                 message.setMessage("Animal Deleted");
                 message.setMessageId(UUID.randomUUID().toString());

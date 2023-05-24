@@ -43,26 +43,26 @@ public class ProfileServiceApplication {
 			userService.saveRole(new Role(null, "ROLE_BUSINESS"));
 			userService.saveRole(new Role(null, "ROLE_SITTER"));
 
-			userService.saveUser(new User(null, "Jhon Travolta",
-					"jhon@gmail.com", "1234", new ArrayList<>(),null, null
-					,"bbbbrc94p01c722d",null,"ITA","Turin","Via viosa 3"));
-			userService.saveUser(new User(null, "Marco Bevivino",
-					"marco@gmail.com", "1234", new ArrayList<>(),null, null
-					,"rrrmrc94p01c722d",null,"ITA","Turin","Via viosa4"));
-			userService.saveUser(new User(null, "Asya Mantovani",
-					"asya@gmail.com", "1234", new ArrayList<>(),null, null
-					,"aavmrc94p01c722d",null,"ITA","Turin","Via viosa 5"));
-			userService.saveUser(new User(null, "Alessandro Muraro",
-					"ale@gmail.com", "1234", new ArrayList<>(),null, null
-					,"bq32394p01c722d",null,"ITA","Turin","Via viosa 5"));
-
-
-
-			userService.addRoleToUser("jhon@gmail.com", "ROLE_USER");
-			userService.addRoleToUser("marco@gmail.com", "ROLE_TRAINEE");
-			userService.addRoleToUser("marco@gmail.com", "ROLE_SITTER");
-			userService.addRoleToUser("asya@gmail.com", "ROLE_BUSINESS");
-			userService.addRoleToUser("ale@gmail.com", "ROLE_SITTER");
+//			userService.saveUser(new User(null, "Jhon Travolta",
+//					"jhon@gmail.com", "1234", new ArrayList<>(),null, null
+//					,"bbbbrc94p01c722d",null,"ITA","Turin","Via viosa 3"));
+//			userService.saveUser(new User(null, "Marco Bevivino",
+//					"marco@gmail.com", "1234", new ArrayList<>(),null, null
+//					,"rrrmrc94p01c722d",null,"ITA","Turin","Via viosa4"));
+//			userService.saveUser(new User(null, "Asya Mantovani",
+//					"asya@gmail.com", "1234", new ArrayList<>(),null, null
+//					,"aavmrc94p01c722d",null,"ITA","Turin","Via viosa 5"));
+//			userService.saveUser(new User(null, "Alessandro Muraro",
+//					"ale@gmail.com", "1234", new ArrayList<>(),null, null
+//					,"bq32394p01c722d",null,"ITA","Turin","Via viosa 5"));
+//
+//
+//
+//			userService.addRoleToUser("jhon@gmail.com", "ROLE_USER");
+//			userService.addRoleToUser("marco@gmail.com", "ROLE_TRAINEE");
+//			userService.addRoleToUser("marco@gmail.com", "ROLE_SITTER");
+//			userService.addRoleToUser("asya@gmail.com", "ROLE_BUSINESS");
+//			userService.addRoleToUser("ale@gmail.com", "ROLE_SITTER");
 			storageService.init();
 		};
 	}

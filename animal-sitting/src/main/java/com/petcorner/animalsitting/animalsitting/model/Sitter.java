@@ -21,7 +21,6 @@ public class Sitter {
     private String name;
     private String surname;
     private int age;
-    private String owner;
     private String locality;
     private String personalDescription;
     private String animalsAllowed;
@@ -29,8 +28,10 @@ public class Sitter {
     private String serviceOffered;
     @Column(unique = true, nullable = false)
     private String email;
+    @Column(columnDefinition = "TEXT")
+    private String image;
 
-    public Sitter(String name, String surname, int age, String locality, String personalDescription, String animalsAllowed, int sizeAllowed, String serviceOffered,String email) {
+    public Sitter(String name, String surname, int age, String locality, String personalDescription, String animalsAllowed, int sizeAllowed, String serviceOffered,String email, String image) {
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -40,6 +41,23 @@ public class Sitter {
         this.sizeAllowed = sizeAllowed;
         this.serviceOffered = serviceOffered;
         this.email=email;
+        this.image=image;
+    }
+
+    public String getServiceOffered() {
+        return serviceOffered;
+    }
+
+    public void setServiceOffered(String serviceOffered) {
+        this.serviceOffered = serviceOffered;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getEmail() {
@@ -67,14 +85,6 @@ public class Sitter {
 
     public int getAge() {
         return age;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
     }
 
     public void setAge(int age) {

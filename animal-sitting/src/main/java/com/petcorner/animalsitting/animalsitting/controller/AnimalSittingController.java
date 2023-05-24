@@ -271,10 +271,10 @@ public class AnimalSittingController {
                 System.out.println(message.getData().toString());
                 Sitter sitterToDelete = new ObjectMapper().readValue(sitterStringToDelete, Sitter.class);
 
-                Long id = sitterToDelete.getId();
+                String email = sitterToDelete.getEmail();
                 System.out.println(sitterToDelete);
                 try {
-                    repository.deleteById(id);
+                    repository.deleteByEmail(email);
                 } catch (Exception e) {
                     System.out.println("Error:" + e.getMessage());
                     break;

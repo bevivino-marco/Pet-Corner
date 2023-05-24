@@ -322,6 +322,123 @@ public class UserController {
     }
 
 
+    @PostMapping("/animal/delete-animal-adopt-queue")
+    public String deleteAnimalAdopt(@RequestParam("param") String param) throws IOException, JSONException {
+
+        JSONObject animal = new JSONObject();
+        if(param.contains("@")){
+            animal.put("owner", param);
+        }else {
+            animal.put("microchip", param);
+        }
+
+
+
+        CustomMessage message = new CustomMessage();
+        message.setData(animal.toString());
+        message.setMessage("Delete animal");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend(MQConfig.EXCHANGE,
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "Animal Sent";
+    }
+
+
+    @PostMapping("/user/save/add-user-sitter-queue")
+    public String addUserSitter(
+            @RequestParam("image") MultipartFile image,
+            @RequestParam("age") String age,@RequestParam("name") String name,
+            @RequestParam("surname") String surname,@RequestParam("locality") String locality,
+            @RequestParam("email") String email,@RequestParam("personalDescription") String personalDescription,
+            @RequestParam("sizeAllowed") int size, @RequestParam("animalsAllowed") String animalsAllowed,
+            @RequestParam("serviceOffered") String serviceOffered
+    ) throws IOException, JSONException {
+
+        String imageByte = Base64.getEncoder().encodeToString(image.getBytes());
+        JSONObject user = new JSONObject();
+        user.put("image", imageByte);
+        user.put("age",age);
+        user.put("name",name);
+        user.put("surname",surname);
+        user.put("locality",locality);
+        user.put("email",email);
+        user.put("personalDescription", personalDescription);
+        user.put("serviceOffered", serviceOffered);
+        user.put("sizeAllowed", size);
+        user.put("animalsAllowed", animalsAllowed);
+        CustomMessage message = new CustomMessage();
+        message.setData(user.toString());
+        message.setMessage("Create animal sitter");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend("pet-sitter",
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+        return "Sitter sent";
+
+    }
+
+
+    @PostMapping("/user/delete/delete-user-sitter-queue")
+    public String deleteUserSitter(@RequestParam("email") String email) throws IOException, JSONException {
+
+        JSONObject user = new JSONObject();
+        user.put("email",email);
+
+
+        CustomMessage message = new CustomMessage();
+        message.setData(user.toString());
+        message.setMessage("Delete animal Sitter");
+        message.setMessageId(UUID.randomUUID().toString());
+        message.setMessageDate(new Date());
+        template.convertAndSend("pet-sitter",
+                MQConfig.ROUTING_KEY, message);
+        System.out.println(message.getData());
+
+        return "sitter Sent";
+    }
+
+
+
+    @PostMapping("/user/save/add-user")
+    public ResponseEntity<User> addUserV2(
+            @RequestParam("image") MultipartFile file,
+            @RequestParam("address") String address,@RequestParam("name") String name,@RequestParam("username") String username,
+            @RequestParam("city") String city,@RequestParam("providerId") String providerId,
+            @RequestParam("country") String country,@RequestParam("provider") String provider,
+            @RequestParam("piva") String piva, @RequestParam("password") String password,
+            @RequestParam("cod_fisc") String cod_fisc
+    ) throws IOException, JSONException {
+
+        String image = Base64.getEncoder().encodeToString(file.getBytes());
+        JSONObject user = new JSONObject();
+        user.put("image", image);
+        user.put("address",address);
+        user.put("city",city);
+        user.put("country",country);
+        user.put("piva",piva);
+        user.put("cod_fisc",cod_fisc);
+        user.put("name", name);
+        user.put("username", username);
+        user.put("providerId", providerId);
+        user.put("provider", provider);
+        user.put("password", password);
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("api/v1/user/save").toUriString());
+        User newUser = new ObjectMapper().readValue(user.toString(), User.class);
+        return ResponseEntity.created(uri).body(userService.saveUser(newUser));
+
+    }
+
+
+
+
+
+
+
 }
 @Data
 class RoleToUserForm {
