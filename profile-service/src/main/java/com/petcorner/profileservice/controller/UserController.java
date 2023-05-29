@@ -405,7 +405,7 @@ public class UserController {
 
     @PostMapping("/user/save/add-user")
     public ResponseEntity<User> addUserV2(
-            @RequestParam("image") MultipartFile file,
+            @RequestParam("image") String file,
             @RequestParam("address") String address,@RequestParam("name") String name,@RequestParam("username") String username,
             @RequestParam("city") String city,@RequestParam("providerId") String providerId,
             @RequestParam("country") String country,@RequestParam("provider") String provider,
@@ -413,9 +413,9 @@ public class UserController {
             @RequestParam("cod_fisc") String cod_fisc
     ) throws IOException, JSONException {
 
-        String image = Base64.getEncoder().encodeToString(file.getBytes());
+//        String image = Base64.getEncoder().encodeToString(file.getBytes());
         JSONObject user = new JSONObject();
-        user.put("image", image);
+        user.put("image", file);
         user.put("address",address);
         user.put("city",city);
         user.put("country",country);
