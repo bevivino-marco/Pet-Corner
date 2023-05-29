@@ -183,7 +183,7 @@ services:
 
   profile-service:
     container_name: profile-service
-    image: 0109199416081991/mmv2-profile-service:0.4.0-SNAPSHOT
+    image: 0109199416081991/mmv2-profile-service:0.4.1-SNAPSHOT
     restart: unless-stopped
     ports:
       - "9000:9000"
