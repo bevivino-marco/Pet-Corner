@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94cdbc32-7798-4da5-adfb-0a6087c67ffb" name="Changes" comment="Tutto funzionante su k8s &quot;/&quot; tolto immagine aggiornata k8s">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/src/main/java/com/petcorner/adopt/adoptservice/controller/AdoptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/src/main/java/com/petcorner/adopt/adoptservice/controller/AdoptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/src/main/java/com/petcorner/adopt/adoptservice/model/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/src/main/java/com/petcorner/adopt/adoptservice/model/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/src/main/java/com/petcorner/adopt/adoptservice/repository/AdoptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/src/main/java/com/petcorner/adopt/adoptservice/repository/AdoptRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/controller/AdoptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/controller/AdoptController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/model/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/model/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/repository/AdoptRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/adopt-service/target/classes/com/petcorner/adopt/adoptservice/repository/AdoptRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-sitting/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/animal-sitting/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/AnimalSittingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/AnimalSittingApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/controller/AnimalSittingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/controller/AnimalSittingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/model/Sitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/model/Sitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/repository/AnimalSittingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/animal-sitting/src/main/java/com/petcorner/animalsitting/animalsitting/repository/AnimalSittingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/ProfileServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/ProfileServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/petcorner/profileservice/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/ProfileServiceApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/ProfileServiceApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/controller/RoleToUserForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/controller/RoleToUserForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/target/classes/com/petcorner/profileservice/security/SecurityConfig.class" afterDir="false" />
-    </list>
+    <list default="true" id="94cdbc32-7798-4da5-adfb-0a6087c67ffb" name="Changes" comment="user controller string no image update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +65,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677020449970</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="user controller string no image update">
+      <created>1685340443900</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685340443900</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,6 +89,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Tutto funzionante su k8s" />
     <MESSAGE value="Tutto funzionante su k8s &quot;/&quot; tolto immagine aggiornata k8s" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tutto funzionante su k8s &quot;/&quot; tolto immagine aggiornata k8s" />
+    <MESSAGE value="user controller string no image update" />
+    <option name="LAST_COMMIT_MESSAGE" value="user controller string no image update" />
   </component>
 </project>

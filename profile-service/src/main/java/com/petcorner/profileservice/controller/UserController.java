@@ -288,7 +288,7 @@ public class UserController {
 
     @PostMapping("/animal/add-animal-adopt-queue")
     public String addAnimalADopt(
-            @RequestParam("file") MultipartFile file,
+            @RequestParam("file") String file,
           @RequestParam("age") String age,@RequestParam("description") String descr,
           @RequestParam("owner") String owner,@RequestParam("microchip") String chip,
           @RequestParam("name") String name,@RequestParam("sex") String sex,
@@ -296,9 +296,9 @@ public class UserController {
             @RequestParam("type") String type
         ) throws IOException, JSONException {
 
-        String image = Base64.getEncoder().encodeToString(file.getBytes());
+//        String image = Base64.getEncoder().encodeToString(file.getBytes());
         JSONObject animal = new JSONObject();
-        animal.put("image", image);
+        animal.put("image", file);
         animal.put("age",age);
         animal.put("owner",owner);
         animal.put("size",size);
